@@ -71,7 +71,7 @@ echo '        <div class="content-title"><h3 class="content-title-text">About</h
                 developers to browse the internal structure of their favourite apps and discover how they work. Users can
                 easily select from any app that you\'ve installed as well as the pre-installed system apps and load any
                 object (in the Java sense) that\'s used in the app to view their details. This is a process known as
-                <a class="content-link" href="http://en.wikipedia.org/wiki/Type_introspection">Type Introspection.</a>
+                <a href="http://en.wikipedia.org/wiki/Type_introspection">Type Introspection.</a>
                 In future updates to the app, full reflection capabilities will be added so that any object can be instantiated
                 and manipulated completely inside the app.
             </p>
@@ -90,7 +90,7 @@ echo '        <div class="content-title"><h3 class="content-title-text">About</h
             </p>
             <p>
                 I hope you enjoy the use of this app and I encourage you to use it in conjunction with the source code
-                to the app (coming soon!) so that you can get an idea of how to interpret it. Please feel free to contact
+                to the app so that you can get an idea of how to interpret it. Please feel free to contact
                 me with any suggestions, bug reports, criticisms or even just questions on how it all works. I love to
                 hear from users of my programs!
             </p>

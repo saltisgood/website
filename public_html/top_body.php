@@ -55,7 +55,11 @@ if ($cons->includePrimeNav()) {
                     echo ' class="selected sub"';
                 }
                 echo '><h4><a class="sub" href="', getRootPath(), '/android/apps/oaa/" style="width:200px">Open App Android</a></h4></li>
-                <li><h4><a class="sub" href="', getRootPath(),'/android/apps/snap/">OpenSnap</a></h4></li>
+                <li';
+                if ($cons->getSelectedSubNav() == \stevo\AndroidNavEnum::OPENSNAP) {
+                    echo ' class="selected sub"';
+                }
+                echo '><h4><a class="sub" href="', getRootPath(),'/android/apps/snap/">OpenSnap</a></h4></li>
                 <li><h4><a class="sub">Info</a></h4></li>';
                 break;
         }

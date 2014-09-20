@@ -2,20 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: Nick
- * Date: 15/12/13
- * Time: 4:11 PM
+ * Date: 15/02/2014
+ * Time: 6:12 PM
  */
 
 include "../../../php/stevo/util.php";
 set_include_path("../../../");
 
 $args = array(
-    \stevo\Constants::TITLE => "Source &middot; Open App Android",
+    \stevo\Constants::TITLE => "Source &middot; OpenSnap",
     \stevo\Constants::MENU_STYLES => False,
     \stevo\Constants::PRIME_NAV => True,
     \stevo\Constants::SELECT_PRIME_NAV => new \stevo\PrimeNavEnum(\stevo\PrimeNavEnum::ANDROID),
     \stevo\Constants::INCLUDE_SCRIPTS => True,
-    \stevo\Constants::SELECT_SUB_NAV => new \stevo\AndroidNavEnum(\stevo\AndroidNavEnum::OPEN_APP)
+    \stevo\Constants::SELECT_SUB_NAV => new \stevo\AndroidNavEnum(\stevo\AndroidNavEnum::OPENSNAP)
 );
 
 $cons = new \stevo\Constants($args);
@@ -55,17 +55,17 @@ include "top_body.php";
 echo '        <div class="content-title"><h3 class="content-title-text">Source</h3></div>
         <div class="content-body">
             <p>
-                The full source code for Open App Android can be found on my <a href="https://github.com/saltisgood/open-android">GitHub Repository</a>.
+                The full source code for OpenSnap can be found on my <a href="https://github.com/saltisgood/opensnap">GitHub Repository</a>.
             </p>
             <p>
                 To download and browse it you will just need <a href="http://git-scm.com/downloads">Git</a> and then you
                 can use the commands in a git bash terminal:
             </p>
             <p class="indent"><code>
-                git clone https://github.com/saltisgood/open-android.git OpenAndroidProj
+                git clone https://github.com/saltisgood/opensnap.git OpenSnapProj
             </code></p>
             <p class="indent"><code>
-                cd OpenAndroidProj
+                cd OpenSnapProj
             </code></p>
             <p class="indent"><code>
                 git submodule init
@@ -74,9 +74,9 @@ echo '        <div class="content-title"><h3 class="content-title-text">Source</
                 git submodule update
             </code></p>
             <p>
-                These commands simply download the source code files to a new folder OpenAndroidProj, change into that
+                These commands simply download the source code files to a new folder OpenSnapProj, change into that
                  folder and then initialise and synchronise the submodules as well. The end result of these commands is
-                 that you\'ll have an exact copy of the last stable release of Open App Android.
+                 that you\'ll have an exact copy of the last stable release of OpenSnap.
             </p>
             <p>
                 The repository is set up so that if you\'re using
@@ -92,7 +92,7 @@ include "bottom_body.php";
 $hierarchy = array(
     'Home' => '../../../',
     'Android' => '../../',
-    'Open App Android' => './',
+    'OpenSnap' => './',
     'Source' => ''
 );
 

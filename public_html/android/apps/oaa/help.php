@@ -110,7 +110,7 @@ echo '        <div class="content-title"><h3 class="content-title-text">Help</h3
             <p>
                 Then you will see this list of resource types that will be familiar to any Android developers. You can also
                 find some more information on the
-                <a class="content-link" href="http://developer.android.com/guide/topics/resources/index.html">Android website</a>.
+                <a href="http://developer.android.com/guide/topics/resources/index.html">Android website</a>.
                 Currently only the drawable and string resource types are supported in Open App Android, but the others
                 could be easily added in a future update.
             </p>

@@ -2,20 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: Nick
- * Date: 15/12/13
- * Time: 4:18 PM
+ * Date: 15/02/2014
+ * Time: 6:33 PM
  */
 
 include "../../../php/stevo/util.php";
 set_include_path("../../../");
 
 $args = array(
-    \stevo\Constants::TITLE => "Download &middot; Open App Android",
+    \stevo\Constants::TITLE => "Download &middot; OpenSnap",
     \stevo\Constants::MENU_STYLES => False,
     \stevo\Constants::PRIME_NAV => True,
     \stevo\Constants::SELECT_PRIME_NAV => new \stevo\PrimeNavEnum(\stevo\PrimeNavEnum::ANDROID),
     \stevo\Constants::INCLUDE_SCRIPTS => True,
-    \stevo\Constants::SELECT_SUB_NAV => new \stevo\AndroidNavEnum(\stevo\AndroidNavEnum::OPEN_APP)
+    \stevo\Constants::SELECT_SUB_NAV => new \stevo\AndroidNavEnum(\stevo\AndroidNavEnum::OPENSNAP)
 );
 
 $cons = new \stevo\Constants($args);
@@ -63,7 +63,7 @@ echo '        <div class="content-title"><h3 class="content-title-text">Download
             <h5>Google Play</h5>
             <p>
                 The easiest way to download the app is through the
-                <a href="https://play.google.com/store/apps/details?id=com.nickstephen.openandroid">
+                <a href="https://play.google.com/store/apps/details?id=com.nickstephen.opensnap">
                 Play Store.</a> Just click the link to go the page and then click on install.
             </p>
             <p>
@@ -82,7 +82,7 @@ include "bottom_body.php";
 $hierarchy = array(
     'Home' => '../../../',
     'Android' => '../../',
-    'Open App Android' => './',
+    'OpenSnap' => './',
     'Download' => ''
 );
 

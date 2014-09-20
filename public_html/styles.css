@@ -250,6 +250,10 @@ div.side-menu-link a {
     text-decoration: none;
 }
 
+div.content-body ul {
+    margin-left: 70px;
+}
+
 div.side-menu-link:hover {
     transition: background .3s linear;
     background: #2f2f2f;
@@ -308,12 +312,16 @@ p {
     margin-bottom: 10px;
 }
 
+p.indent {
+    text-indent: 40px;
+}
+
 p.content-end {
     padding-top: 5px;
     text-align: right;
 }
 
-a.content-link {
+div.content-body a{
     color: #f6f6f6;
     font-weight: bold;
 }
