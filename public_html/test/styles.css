@@ -8,7 +8,7 @@ body {
     color:#D3D3D3;
     height:100%;
     font-family: "Roboto","Calibri", Tahoma, arial, sans-serif;
-    font-size: 1.25em;
+    font-size: 1.1em;
 }
 
 h1 {
@@ -19,6 +19,7 @@ h1 {
 h3 {
     font-size: 3em;
     color: #F6F6F6;
+	text-shadow: 4px 4px 4px #BBB;
 }
 
 h4 {
@@ -30,6 +31,7 @@ h4 {
 
 h5 {
     font-size: 1.4em;
+	text-shadow: 4px 4px 4px #BBB;
 }
 
 p {
@@ -107,6 +109,7 @@ a:hover, a:active, .hov:hover {
     margin: 0 20px 0;
     height: 70px;
     padding-top: 20px;
+	text-shadow: 0 0 7px #BBB;
 }
 
 span#title-low-emph {
@@ -152,7 +155,7 @@ span#title-low-emph {
     margin: 10px;
 }
 
-#side-menu-main ~ ul {
+#side-menu-main > ul {
     list-style: none;
     margin: 0;
 }
@@ -168,17 +171,18 @@ li .nav-check:checked + label {
 }
 
 li .nav-check ~ ul {
+	list-style: inherit;
     margin: 0 0 0 30px;
 }
 
-li .nav-check ~ ul > li {
+li .nos-check ~ ul {
     display: none;
     opacity: 0;
 }
 
-li .nav-check:checked ~ ul > li {
-    display: block;
-    opacity: 1;
+li .nos-check:checked ~ ul {
+	display: block;
+	opacity: 1;
 }
 
 /*

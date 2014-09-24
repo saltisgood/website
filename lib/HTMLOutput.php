@@ -72,11 +72,11 @@ class HTML implements Output
 	<div id="side-menu-main">
 		<ul>
 			<li>
-				<input class="nav-check" id="nav-android" type="checkbox" checked="true" value="nav-android" />
+				<input class="nav-check nos-check" id="nav-android" type="checkbox" checked="true" value="nav-android" />
 				<label for="nav-android" class="nav-label">Android</label>
 				<ul>
 					<li>
-						<input class="nav-check" type="checkbox" checked="true" id="nav-oaa" value="nav-oaa" />
+						<input class="nav-check nos-check" type="checkbox" checked="true" id="nav-oaa" value="nav-oaa" />
 						<label class="nav-label" for="nav-oaa">Open App Android</label>
 						<ul>
 							<li><a href="about.php">About</a></li>
@@ -86,7 +86,7 @@ class HTML implements Output
 						</ul>
 					</li>
 					<li>
-						<input class="nav-check" type="checkbox" id="nav-snap" value="nav-snap"/>
+						<input class="nav-check nos-check" type="checkbox" id="nav-snap" value="nav-snap"/>
 						<label class="nav-label" for="nav-snap">OpenSnap</label>
 						<ul>
 							<li><a href="../snap/about.php">About</a></li>
