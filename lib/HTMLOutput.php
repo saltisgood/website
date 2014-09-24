@@ -30,7 +30,14 @@ class HTML implements Output
     {
         echo "<!DOCTYPE html><head>
             <meta charset='UTF-8' />
-            <title>", $this->content->title, HTML::TITLE_SUF, "</title>
+            <title>", $this->content->title;
+
+        if (!is_null($this->content->subtitle))
+        {
+            echo " &middot; ", $this->content->subtitle;
+        }
+
+        echo HTML::TITLE_SUF, "</title>
             <meta name='viewport' content='width=device-width, initial-scale=1.0' />
             <link rel='stylesheet' type='text/css' href='$this->relPath/styles.css' />
         </head>";
@@ -46,14 +53,14 @@ class HTML implements Output
 
         // The Header
         echo '
-<div id="header">
+<div id="header"><header>
 	<div class="contain">
 		<h1 class="fleft"><a href="', $this->relPath, '">NickStephen<span id="title-low-emph">.com</span></a></h1>
 		<h1 class="fright"><a href="../">Up</a></h1>
 	</div>
 	<div class="scrpt hov" id="head-hider" style="position:absolute">Hide Header
     </div>
-</div>
+</header></div>
 <div class="scrpt hov hide" id="head-shower" style="position:fixed">Show Header
 </div>';
 
@@ -107,11 +114,11 @@ class HTML implements Output
 
         // The Footer
         echo '
-<div id="footer">
+<div id="footer"><footer>
 	<div id="foot-hier"><a class="navi" href="../../../">Home</a> &gt; <a class="navi" href="../../">Android</a> &gt; <a class="navi" href="./">Open App Android</a> &gt; Help</div>
 	<div class="contain">Nicholas Stephen - 2014</div>
 	<div class="scrpt hov" id="foot-hide" style="padding:0 20px;">Hide Footer</div>
-</div>
+</footer></div>
 <div class="scrpt hov hide" id="foot-show">Show Footer</div>';
 
         echo "<script type='text/javascript' src='$this->relPath/jquery-1.10.2.min.js' defer></script>

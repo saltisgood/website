@@ -145,6 +145,7 @@ class Section implements Output
 class Content implements Output
 {
     public $title = 'TITLE UNSET';
+    public $subtitle;
 
     protected $sections = array();
     protected $secCount = 0;
@@ -158,7 +159,14 @@ class Content implements Output
     public function write()
     {
         echo "<div id='content' class='contain'>
-    <div id='content-title'><h3>$this->title</h3></div>
+    <div id='content-title'><header><h3>$this->title</h3>";
+
+        if (!is_null($this->subtitle))
+        {
+            echo "<h4 style='margin-left:40px;'>$this->subtitle</h4>";
+        }
+
+        echo "</header></div>
     <div id='content-body'>";
         for ($i = 0; $i < $this->secCount; ++$i)
         {

@@ -9,7 +9,8 @@
 include '../../lib/HTMLOutput.php';
 
 $htmlOut = new HTML();
-$htmlOut->content->title = 'Help &middot; Open App Android';
+$htmlOut->content->title = 'Help';
+$htmlOut->content->subtitle = 'Open App Android';
 
 $sec = new Section();
 $sec->heading = 'Introduction';
