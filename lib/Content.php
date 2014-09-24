@@ -7,6 +7,8 @@
  */
 
 include_once 'Output.php';
+include_once 'Components.php';
+include_once 'Forms.php';
 
 class Paragraph implements Output
 {
@@ -14,10 +16,12 @@ class Paragraph implements Output
 
     public function write()
     {
+        echo '<p>';
         if (!is_null($this->text))
         {
             echo $this->text;
         }
+        echo '</p>';
     }
 }
 
@@ -36,6 +40,7 @@ class GenTag implements Output
     protected $tag;
     protected $attrs = array();
     protected $contents;
+    protected $stringContents;
 
     public function __construct($tag)
     {
@@ -52,6 +57,11 @@ class GenTag implements Output
         $this->contents = $conts;
     }
 
+    public function addStringContents($conts)
+    {
+        $this->stringContents = $conts;
+    }
+
     public function write()
     {
         echo "<$this->tag ";
@@ -64,6 +74,10 @@ class GenTag implements Output
         if (!is_null($this->contents))
         {
             $this->contents->write();
+        }
+        else if (!is_null($this->stringContents))
+        {
+            echo $this->stringContents;
         }
 
         echo "</$this->tag>";
@@ -114,7 +128,7 @@ class RichParagraph implements Output
 
 class Section implements Output
 {
-    public $heading = 'TITLE UNSET';
+    public $heading;
 
     protected $paras = array();
     protected $paraCount = 0;
@@ -143,6 +157,9 @@ class Section implements Output
 class Content implements Output
 {
     public $title = 'TITLE UNSET';
+    public $subtitle;
+
+    public $isMenu = false;
 
     protected $sections = array();
     protected $secCount = 0;
@@ -153,11 +170,44 @@ class Content implements Output
         ++$this->secCount;
     }
 
+    public function addButton(Button $but)
+    {
+        $this->sections[$this->secCount] = $but;
+        ++$this->secCount;
+    }
+
+    public function addImageSection(ImageSection $img)
+    {
+        $this->sections[$this->secCount] = $img;
+        ++$this->secCount;
+    }
+
     public function write()
     {
+        echo "<div id='content' class='contain'>
+    <div id='js-warn' class='noscrpt emph'>This website is better with JavaScript enabled! Promise :)</div>
+    <div id='content-title'><header><h3>$this->title</h3>";
+
+        if (!is_null($this->subtitle))
+        {
+            echo "<h4 style='margin-left:10%;'>$this->subtitle</h4>";
+        }
+
+        echo '</header></div><div id="content-body" ';
+
+        if ($this->isMenu)
+        {
+            echo 'class="menu-page"';
+        }
+
+        echo '>';
+
         for ($i = 0; $i < $this->secCount; ++$i)
         {
             $this->sections[$i]->write();
         }
+
+        echo "</div>
+</div>";
     }
 } 

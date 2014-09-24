@@ -2,10 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: Nick Stephen
- * Date: 20/09/14
- * Time: 6:36 PM
+ * Date: 3/10/14
+ * Time: 6:06 PM
  */
 
 $rel = '../../';
 
-include $rel . 'content/index.php';
+include $rel . 'content/contact.php';
