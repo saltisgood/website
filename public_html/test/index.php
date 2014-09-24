@@ -129,5 +129,4 @@ $para->text = "This gives you the class or object view. The icon in the top left
 $sec->addParagraph($para);
 $htmlOut->content->addSection($sec);
 
-$htmlOut->writeHeader();
-$htmlOut->writeBody();
+$htmlOut->write();
