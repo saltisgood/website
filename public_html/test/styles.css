@@ -1,5 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background: #333 url('img/background.png') repeat-x fixed;
+    color:#D3D3D3;
+    height:100%;
+    font-family:"Calibri", Tahoma, arial, serif;
+    font-size: 1.25em;
 }
 
 h1 {
@@ -7,9 +16,28 @@ h1 {
     color: #D3D3D3;
 }
 
+h3 {
+    font-size: 3em;
+    color: #F6F6F6;
+}
+
+h5 {
+    font-size: 1.4em;
+}
+
+p {
+    text-indent: 25px;
+    margin-bottom: 0.4em;
+}
+
 a {
-    color: #D3D3D3;
+    color: #F6F6F6;
+    font-weight: bold;
     text-decoration: none;
+}
+
+a:hover, a:active, .hov:hover {
+    text-decoration: underline;
 }
 
 .fleft {
@@ -27,6 +55,32 @@ a {
 
 .hov {
     text-decoration: none;
+}
+
+.emph {
+    font-weight: bold;
+    color: #C55E4C;
+}
+
+.contain {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#content {
+    background-color: #A3A3A3;
+    padding: 90px 0 60px;
+}
+
+#content-title {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#content-body {
+    padding: 0 5px;
+    text-align: justify;
+    color: #E1E1E1;
 }
 
 /* Header */

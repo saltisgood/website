@@ -18,7 +18,7 @@ function entleaMouse(bar,enter){
 function setupBar(bar, onShow, onHide) {
     if(onShow===undefined){onShow=function(){};}
     if(onHide===undefined){onHide=function(){};}
-
+    // Assumes that if the browser can get to here it supports display:none
     bar.shower.animate({opacity:1});
 
     bar.hider.click(function() {
@@ -42,13 +42,13 @@ $(document).ready(function() {
     var sideMenu = $("#side-menu");
     var sideShow = $("#side-menu-open");
 
+    sideShow.animate({opacity:1});
+
     $("#side-menu-close").click(function() {
-        sideMenu.animate({left:-sideMenu.outerWidth(), opacity:0},500, "swing");
-        sideShow.animate({opacity:1},800);
+        sideMenu.animate({left:-sideMenu.outerWidth(), opacity:0},500,"swing");
         sideShow.fadeIn(800);
     });
     sideShow.click(function() {
-        sideShow.animate({opacity:0},"fast");
         sideShow.fadeOut("fast");
         sideMenu.animate({left:0,opacity:1},500,"swing");
     });

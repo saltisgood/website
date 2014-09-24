@@ -32,7 +32,7 @@ class HTML implements Output
             <meta charset='UTF-8' />
             <title>", $this->content->title, HTML::TITLE_SUF, "</title>
             <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-            <link rel='stylesheet' type='text/css' href='$this->relPath/prestyles.css' />
+            <link rel='stylesheet' type='text/css' href='$this->relPath/styles.css' />
         </head>";
     }
 
@@ -43,7 +43,6 @@ class HTML implements Output
         $this->content->write();
 
         // Now the main dessert is finished, add the toppings.
-        echo "<link rel='stylesheet' type='text/css' href='$this->relPath/poststyles.css' />";
 
         // The Header
         echo '
@@ -115,7 +114,7 @@ class HTML implements Output
 </div>
 <div class="scrpt hov hide" id="foot-show">Show Footer</div>';
 
-        echo "<script type='text/javascript' src='$this->relPath/jquery-1.10.2.min.js'></script>
-    <script type='text/javascript' src='$this->relPath/scripts.js'></script></body>";
+        echo "<script type='text/javascript' src='$this->relPath/jquery-1.10.2.min.js' defer></script>
+    <script type='text/javascript' src='$this->relPath/scripts.js' defer></script></body>";
     }
 }
