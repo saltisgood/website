@@ -14,10 +14,12 @@ class Paragraph implements Output
 
     public function write()
     {
+        echo '<p>';
         if (!is_null($this->text))
         {
             echo $this->text;
         }
+        echo '</p>';
     }
 }
 
@@ -155,9 +157,15 @@ class Content implements Output
 
     public function write()
     {
+        echo "<div id='content' class='contain'>
+    <div id='content-title'><h3>$this->title</h3></div>
+    <div id='content-body'>";
         for ($i = 0; $i < $this->secCount; ++$i)
         {
             $this->sections[$i]->write();
         }
+
+        echo "</div>
+</div>";
     }
 } 

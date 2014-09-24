@@ -12,7 +12,7 @@ body:before {
 }
 
 body {
-    background: #333 url('img/background.png') repeat-x fixed;
+    background: #333 url('test/img/background.png') repeat-x fixed;
     color: #D3D3D3;
     height: 100%;
     font-family: "Calibri", Tahoma, arial, serif;

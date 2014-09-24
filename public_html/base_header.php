@@ -13,7 +13,7 @@ echo "<!DOCTYPE html>
     <meta charset=\"UTF-8\" />
     <title>", $cons->getPageTitle(), " - NickStephen.com</title>
     ",
-    "<link rel=\"stylesheet\" type=\"text/css\" href=\"", getRootPath(), "/styles.css\" />";
+    "<link rel=\"stylesheet\" type=\"text/css\" href=\"", getRootPath(), "/poststyles.css\" />";
 
 if ($cons->includeMenuStyles()) {
     echo "

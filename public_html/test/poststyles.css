@@ -1,0 +1,148 @@
+body {
+    background: #333 url('img/background.png') repeat-x fixed;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #D3D3D3;
+}
+
+a {
+    color: #D3D3D3;
+    text-decoration: none;
+}
+
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
+}
+
+.hide, .nav-check {
+    opacity: 0;
+    display: none;
+}
+
+.hov {
+    text-decoration: none;
+}
+
+/* Header */
+#header {
+    height: 90px;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#header h1 {
+    margin: 0 20px 0;
+    height: 70px;
+    padding-top: 20px;
+}
+
+span#title-low-emph {
+    color: #A3A3A3;
+}
+
+#head-hider, #head-shower {
+    right: 0;
+    top: 0;
+    padding: 0 20px;
+}
+
+/* Side-Menu */
+#side-menu {
+    position: fixed;
+    top: 90px;
+    bottom: 50px;
+    border-style: solid;
+    background-color: rgba(0, 0, 0, 0.7);
+    min-width: 100px;
+}
+
+#side-menu-open {
+    position: fixed;
+    top: 90px;
+}
+
+#side-menu-close {
+    width: 100%;
+    text-align: right;
+}
+
+#side-menu-main {
+    top: 10%;
+    position: relative;
+    margin: 10px;
+}
+
+#side-menu-main ~ ul {
+    list-style: none;
+    margin: 0;
+}
+
+li .nav-check + label {
+    cursor: pointer;
+    padding-left: 16px;
+    background: url('img/toggle-small-expand.png') no-repeat scroll 0 0.25em transparent;
+}
+
+li .nav-check:checked + label {
+    background-image: url('img/toggle-small.png');
+}
+
+li .nav-check ~ ul {
+    margin: 0 0 0 30px;
+}
+
+li .nav-check ~ ul > li {
+    display: none;
+    opacity: 0;
+}
+
+li .nav-check:checked ~ ul > li {
+    display: block;
+    opacity: 1;
+}
+
+/*
+    Footer
+*/
+#footer {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#footer div {
+    text-align: center;
+    padding: 15px 0 0;
+}
+
+#foot-hier {
+    float: left;
+    display: inline;
+    margin-left: 20px;
+}
+
+#foot-hide {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#foot-show {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+    padding: 0 20px;
+}
