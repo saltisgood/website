@@ -39,6 +39,7 @@ class HTML implements Output
 
         echo HTML::TITLE_SUF, "</title>
             <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+            <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,500' rel='stylesheet' type='text/css'>
             <link rel='stylesheet' type='text/css' href='$this->relPath/styles.css' />
         </head>";
     }

@@ -7,7 +7,7 @@ body {
     background: #333 url('img/background.png') repeat-x fixed;
     color:#D3D3D3;
     height:100%;
-    font-family:"Calibri", Tahoma, arial, serif;
+    font-family: "Roboto","Calibri", Tahoma, arial, sans-serif;
     font-size: 1.25em;
 }
 
@@ -93,10 +93,14 @@ a:hover, a:active, .hov:hover {
 /* Header */
 #header {
     height: 90px;
-    background-color: rgba(0, 0, 0, 0.7);
     position: fixed;
     top: 0;
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    background: -webkit-linear-gradient(rgba(0,0,10,1), rgba(0,0,10,0.5));
+    background: -o-linear-gradient(rgba(0,0,10,1), rgba(0,0,10,0.5));
+    background: -moz-linear-gradient(rgba(0,0,10,1), rgba(0,0,10,0.5));
+    background: linear-gradient(rgba(0,0,10,1), rgba(0,0,10,0.5));
 }
 
 #header h1 {
@@ -121,8 +125,15 @@ span#title-low-emph {
     top: 90px;
     bottom: 50px;
     border-style: solid;
-    background-color: rgba(0, 0, 0, 0.7);
     min-width: 100px;
+    border-radius: 10px;
+    padding-right: 5px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.7);
+    background: -webkit-linear-gradient(left, rgba(0,0,10,1), rgba(0,0,10,0.2));
+    background: -o-linear-gradient(right, rgba(0,0,10,1), rgba(0,0,10,0.2));
+    background: -moz-linear-gradient(right, rgba(0,0,10,1), rgba(0,0,10,0.2));
+    background: linear-gradient(to right, rgba(0,0,10,1), rgba(0,0,10,0.2));
 }
 
 #side-menu-open {
@@ -181,6 +192,10 @@ li .nav-check:checked ~ ul > li {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
+    background: -webkit-linear-gradient(rgba(0,0,10,0.5), rgba(0,0,10,1));
+    background: -o-linear-gradient(rgba(0,0,10,0.5), rgba(0,0,10,1));
+    background: -moz-linear-gradient(rgba(0,0,10,0.5), rgba(0,0,10,1));
+    background: linear-gradient(rgba(0,0,10,0.5), rgba(0,0,10,1));
 }
 
 #footer div {
