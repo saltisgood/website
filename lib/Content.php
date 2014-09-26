@@ -163,7 +163,7 @@ class Content implements Output
 
         if (!is_null($this->subtitle))
         {
-            echo "<h4 style='margin-left:40px;'>$this->subtitle</h4>";
+            echo "<h4 style='margin-left:10%;'>$this->subtitle</h4>";
         }
 
         echo "</header></div>
