@@ -256,6 +256,21 @@ li .nos-check:checked ~ ul {
 		opacity: 1;
 		display: block;
 	}
+	
+	#footer {
+		padding-top: 15px;
+		height: 35px;
+	}
+	
+	#footer #foot-hier, #footer .contain {
+		display: inline;
+		position: static;
+		text-align: left;
+	}
+	
+	#footer .contain {
+		margin-left: 50px; 
+	}
 }
 
 @media(max-width: 600px) {
