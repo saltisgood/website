@@ -68,11 +68,18 @@ $(document).ready(function() {
     sideShow.animate({opacity:1});
 
     $("#side-menu-close").click(function() {
-        sideMenu.animate({left:-sideMenu.outerWidth(), opacity:0},500,"swing");
+		sideMenu.stop(true);
+		sideShow.stop(true);
+        sideMenu.animate({left:-sideMenu.outerWidth(), opacity:0},500,"swing",function() {
+			sideMenu.css({opacity:1}); // Fixes reducing width whilst menu hidden
+		});
         sideShow.fadeIn(800);
     });
     sideShow.click(function() {
+		sideMenu.stop(true);
+		sideShow.stop(true);
         sideShow.fadeOut("fast");
+		sideMenu.css({opacity:0});
         sideMenu.animate({left:0,opacity:1},500,"swing");
     });
 
