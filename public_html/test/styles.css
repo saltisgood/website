@@ -49,6 +49,10 @@ a:hover, a:active, .hov:hover {
 	text-shadow: 0px 0px 7px #0000F9;
 }
 
+.hov:hover img, a:hover img, a:active img {
+	box-shadow: 0 0 7px #0000F9;
+}
+
 .fleft {
     float: left;
 }
@@ -68,6 +72,10 @@ a:hover, a:active, .hov:hover {
 	cursor: pointer;
 }
 
+.hov img, a img {
+	transition: box-shadow 1s;
+}
+
 .emph {
     font-weight: bold;
     color: #C55E4C;
@@ -85,6 +93,36 @@ a:hover, a:active, .hov:hover {
 
 .noscrpt {
 	display: none;
+}
+
+.dub-screenshot {
+	max-width: 350px;
+	margin: 0 auto 10px;
+}
+
+.screenshot {
+	max-width: 200px;
+	margin: 0 auto 10px;
+}
+
+.screenshot img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.img-caption {
+	width: 100%;
+	text-align: center;
+	font-size: 0.9em;
+}
+
+.dub-screenshot > div {
+	float: left;
+}
+
+.dub-screenshot > div + div {
+	float: right;
 }
 
 #content {
@@ -295,6 +333,20 @@ li .nos-check:checked ~ ul {
 	
 	.contain{
 		width: 100%;
+	}
+	
+	.dub-screenshot > div, .dub-screenshot > div + div {
+		float: none;
+	}
+	
+	.dub-screenshot img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.img-caption {
+		margin-bottom: 10px;
 	}
 	
 	nav {
