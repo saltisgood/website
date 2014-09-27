@@ -281,13 +281,6 @@ li .nos-check:checked ~ ul {
     padding: 0 20px;
 }
 
-@media (min-width: 601px) {
-	html {
-		background: url('img/back5.jpg') no-repeat center center fixed;
-		background-size: cover;
-	}
-}
-
 @media(max-width: 1200px) {
 	.contain {
 		width: 90%;

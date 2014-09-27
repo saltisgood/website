@@ -41,6 +41,14 @@ class HTML implements Output
             <meta name='viewport' content='width=device-width, initial-scale=1.0' />
             <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,500' rel='stylesheet' type='text/css'>
             <link rel='stylesheet' type='text/css' href='$this->relPath/styles.css' />
+            <style>
+                @media (min-width: 601px) {
+                        html {
+                            background: url('$this->relPath/img/back", rand(1,5),".jpg') no-repeat center center fixed;
+                            background-size: cover;
+                        }
+                    }
+            </style>
             <noscript>
                 <style>
                     .scrpt {
