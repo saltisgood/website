@@ -159,6 +159,7 @@ class Content implements Output
     public function write()
     {
         echo "<div id='content' class='contain'>
+    <div id='js-warn' class='noscrpt emph'>This website is better with JavaScript enabled! Promise :)</div>
     <div id='content-title'><header><h3>$this->title</h3>";
 
         if (!is_null($this->subtitle))

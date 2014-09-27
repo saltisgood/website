@@ -41,6 +41,17 @@ class HTML implements Output
             <meta name='viewport' content='width=device-width, initial-scale=1.0' />
             <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,500' rel='stylesheet' type='text/css'>
             <link rel='stylesheet' type='text/css' href='$this->relPath/styles.css' />
+            <noscript>
+                <style>
+                    .scrpt {
+                        display: none;
+                    }
+
+                    .noscrpt {
+                        display: inline;
+                    }
+                </style>
+            </noscript>
         </head>";
     }
 
@@ -66,7 +77,7 @@ class HTML implements Output
         // The Side Menu
         echo '
 <nav><div id="side-menu">
-    <div class="hov un-emph" id="side-menu-close">Close Nav</div>
+    <div class="hov un-emph scrpt" id="side-menu-close">Close Nav</div>
 	<div id="side-menu-main">
 		<ul>
 			<li>
