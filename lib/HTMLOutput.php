@@ -7,13 +7,15 @@
  */
 
 include_once 'Content.php';
+include_once 'Menus.php';
 
 class HTML implements Output
 {
     const TITLE_SUF = ' - NickStephen.com';
 
     public $content;
-    public $relPath = '';
+    public $relPath = './';
+    public $thisPath = '';
 
     function __construct()
     {
@@ -40,11 +42,11 @@ class HTML implements Output
         echo HTML::TITLE_SUF, "</title>
             <meta name='viewport' content='width=device-width, initial-scale=1.0' />
             <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,500' rel='stylesheet' type='text/css'>
-            <link rel='stylesheet' type='text/css' href='$this->relPath/styles.css' />
+            <link rel='stylesheet' type='text/css' href='", $this->relPath, "styles.css' />
             <style>
                 @media (min-width: 601px) {
                         html {
-                            background: url('$this->relPath/img/back", rand(1,5),".jpg') no-repeat center center fixed;
+                            background: url('", $this->relPath, "img/back", rand(1,5),".jpg') no-repeat center center fixed;
                             background-size: cover;
                         }
                     }
@@ -71,75 +73,55 @@ class HTML implements Output
 
         // Now the main dessert is finished, add the toppings.
 
-        // The Header
-        echo '
-<div id="header"><header>
-	<div class="contain">
-		<h1 class="fleft"><a href="', $this->relPath, '">NickStephen<span id="title-low-emph">.com</span></a></h1>
-		<h1 class="fright"><a href="../">Up</a></h1>
-	</div>
-	<div class="scrpt hov un-emph" id="head-hider" style="position:absolute">Hide</div>
-</header></div>
-<div class="scrpt hov hide un-emph" id="head-shower" style="position:fixed">Show</div>';
+        $depth = 0;
+        $isTop = false;
+        if (strcmp($this->thisPath, './index.php') == 0)
+        {
+            $isTop = true;
+        }
+        else if (stripos($this->relPath, './') !== 0)
+        {
+            $depth = substr_count($this->relPath, '../');
+        }
 
-        // The Side Menu
-        echo '
-<nav><div id="side-menu">
-    <div class="hov un-emph scrpt" id="side-menu-close">Close Nav</div>
-	<div id="side-menu-main">
-		<ul>
-			<li>
-				<input class="nav-check nos-check" id="nav-android" type="checkbox" checked="true" value="nav-android" />
-				<label for="nav-android" class="nav-label">Android</label>
-				<ul>
-					<li>
-						<input class="nav-check nos-check" type="checkbox" checked="true" id="nav-oaa" value="nav-oaa" />
-						<label class="nav-label" for="nav-oaa">Open App Android</label>
-						<ul>
-							<li><a href="about.php">About</a></li>
-							<li><a href="download.php">Download</a></li>
-							<li class="emph">Help</li>
-							<li><a href="source.php">Source</a></li>
-						</ul>
-					</li>
-					<li>
-						<input class="nav-check nos-check" type="checkbox" id="nav-snap" value="nav-snap"/>
-						<label class="nav-label" for="nav-snap">OpenSnap</label>
-						<ul>
-							<li><a href="../snap/about.php">About</a></li>
-							<li><a href="../snap/download.php">Download</a></li>
-							<li><a href="../snap/help.php">Help</a></li>
-							<li><a href="../snap/source.php">Source</a></li>
-						</ul>
-					</li>
-					<li><a href="">Android Development</a></li>
-					<li><a href="">Android Info</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="">Web Development</a>
-			</li>
-			<li>
-				<a href="">About Me</a>
-			</li>
-			<li>
-				<a href="contact.php">Contact Me</a>
-			</li>
-		</ul>
-	</div>
-</div></nav>
-<div class="scrpt hov hide un-emph" id="side-menu-open">Show Nav</div>';
+        writeHeader($depth, $isTop);
 
-        // The Footer
-        echo '
-<div id="footer"><footer>
-	<div id="foot-hier"><a class="navi" href="../../../">Home</a> &gt; <a class="navi" href="../../">Android</a> &gt; <a class="navi" href="./">Open App Android</a> &gt; Help</div>
-	<div class="contain">Nicholas Stephen - 2014</div>
-	<div class="scrpt hov un-emph" id="foot-hide" style="padding:0 20px;">Hide</div>
-</footer></div>
-<div class="scrpt hov hide un-emph" id="foot-show">Show</div>';
+        $sideMenu = new SideMenu($this->relPath);
 
-        echo "<script type='text/javascript' src='$this->relPath/jquery-1.10.2.min.js' defer></script>
-    <script type='text/javascript' src='$this->relPath/scripts.js' defer></script></body>";
+        $path = explode('/', $this->thisPath);
+        $count = count($path);
+        if ($count >= 2 && strcmp($path[1], 'android') === 0)
+        {
+            $sideMenu->android->active = true;
+
+            if ($count >= 3 && strcmp($path[2], 'oaa') === 0)
+            {
+                $sideMenu->android->subItems[0]->active = true;
+
+                if ($count >= 4)
+                {
+                    if (strcmp($path[3], 'about.php') === 0)
+                    {
+                        $sideMenu->android->subItems[0]->subItems[0]->active = true;
+                    } else if (strcmp($path[3], 'download.php') === 0)
+                    {
+                        $sideMenu->android->subItems[0]->subItems[1]->active = true;
+                    } else if (strcmp($path[3], 'help.php') === 0)
+                    {
+                        $sideMenu->android->subItems[0]->subItems[2]->active = true;
+                    } else if (strcmp($path[3], 'source.php') === 0)
+                    {
+                        $sideMenu->android->subItems[0]->subItems[3]->active = true;
+                    }
+                }
+            }
+        }
+
+        writeSideMenu($sideMenu);
+
+        writeFooter($sideMenu);
+
+        echo '<script type="text/javascript" src="', $this->relPath, 'jquery-1.10.2.min.js" defer></script>
+    <script type="text/javascript" src="', $this->relPath, 'scripts.js" defer></script></body>';
     }
 }
