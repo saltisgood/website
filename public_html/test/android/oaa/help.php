@@ -6,4 +6,4 @@
  * Time: 9:54 PM
  */
 
-include '../../../../content/index.php';
+include '../../../../content/android/oaa/help.php';

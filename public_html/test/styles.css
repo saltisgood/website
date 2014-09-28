@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+html {
+	height: 100%;
+}
+
 body {
     color:#D3D3D3;
     height:100%;
@@ -91,6 +95,24 @@ a:hover, a:active, .hov:hover {
     margin: 0 auto;
 }
 
+.button {
+	width: 500px;
+	max-width: 500px;
+	display: block;
+	height: 80px;
+	text-align: center;
+	margin: 30px auto;
+	font-size: 2em;
+	background: #F6F6F6 url('img/menu_button.png') repeat-x;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+	background-color: #75EDFF;
+	color: #75EDFF;
+	text-shadow: 0 0 3px #75EDFF;
+}
+
 .noscrpt {
 	display: none;
 }
@@ -125,6 +147,19 @@ a:hover, a:active, .hov:hover {
 	float: right;
 }
 
+#bg {
+	background-color: #888888;
+	position:fixed;
+	height: 100%;
+	width: 800px;
+	max-width: 800px;
+	top: 0;
+	bottom: 0;
+	left: 50%;
+	margin-left: -400px;
+	z-index:-1;
+}
+
 #content {
     background-color: #888888;
     padding: 90px 0 60px;
@@ -146,6 +181,10 @@ a:hover, a:active, .hov:hover {
     padding: 0 10px;
     text-align: justify;
     color: #E1E1E1;
+}
+
+#content-body.menu-page {
+	padding-top: 60px;
 }
 
 /* Header */
@@ -282,7 +321,7 @@ li .nos-check:checked ~ ul {
 }
 
 @media(max-width: 1200px) {
-	.contain {
+	.contain, #bg {
 		width: 90%;
 	}
 	
@@ -315,6 +354,12 @@ li .nos-check:checked ~ ul {
 	}
 }
 
+@media(max-width: 890px) {
+	#bg {
+		margin-left: -45%;
+	}
+}
+
 @media(max-width: 600px) {
 	html {
 		background-color: #888888;
@@ -344,6 +389,10 @@ li .nos-check:checked ~ ul {
 	
 	nav {
 		padding: 0 25% 10px 2%;
+	}
+	
+	#bg {
+		display: none;
 	}
 	
 	#content {

@@ -121,7 +121,7 @@ class HTML implements Output
 
         writeFooter($sideMenu);
 
-        echo '<script type="text/javascript" src="', $this->relPath, 'jquery-1.10.2.min.js" defer></script>
+        echo '<div id="bg"></div><script type="text/javascript" src="', $this->relPath, 'jquery-1.10.2.min.js" defer></script>
     <script type="text/javascript" src="', $this->relPath, 'scripts.js" defer></script></body>';
     }
 }

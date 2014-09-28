@@ -7,6 +7,7 @@
  */
 
 include_once 'Output.php';
+include_once 'Components.php';
 
 class Paragraph implements Output
 {
@@ -147,12 +148,20 @@ class Content implements Output
     public $title = 'TITLE UNSET';
     public $subtitle;
 
+    public $isMenu = false;
+
     protected $sections = array();
     protected $secCount = 0;
 
     public function addSection(Section $sec)
     {
         $this->sections[$this->secCount] = $sec;
+        ++$this->secCount;
+    }
+
+    public function addButton(Button $but)
+    {
+        $this->sections[$this->secCount] = $but;
         ++$this->secCount;
     }
 
@@ -167,8 +176,15 @@ class Content implements Output
             echo "<h4 style='margin-left:10%;'>$this->subtitle</h4>";
         }
 
-        echo "</header></div>
-    <div id='content-body'>";
+        echo '</header></div><div id="content-body" ';
+
+        if ($this->isMenu)
+        {
+            echo 'class="menu-page"';
+        }
+
+        echo '>';
+
         for ($i = 0; $i < $this->secCount; ++$i)
         {
             $this->sections[$i]->write();
