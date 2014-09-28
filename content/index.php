@@ -6,7 +6,12 @@
  * Time: 6:25 PM
  */
 
-include '../../lib/HTMLOutput.php';
+if (!isset($rel))
+{
+    $rel = '../';
+}
+
+include $rel . 'lib/HTMLOutput.php';
 
 $htmlOut = new HTML();
 

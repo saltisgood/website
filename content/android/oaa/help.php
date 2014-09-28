@@ -6,11 +6,15 @@
  * Time: 6:13 PM
  */
 
-include '../../../../lib/HTMLOutput.php';
+if (!isset($rel))
+{
+    $rel = '../../../';
+}
+
+include $rel . 'lib/HTMLOutput.php';
 
 $htmlOut = new HTML();
 
-// ONLY FOR TESTING!
 $htmlOut->relPath = '../.././';
 $htmlOut->thisPath = './android/oaa/help.php';
 

@@ -6,4 +6,6 @@
  * Time: 6:36 PM
  */
 
-include '../../content/index.php';
+$rel = '../../';
+
+include $rel . 'content/index.php';

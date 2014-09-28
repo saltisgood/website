@@ -39,6 +39,7 @@ class GenTag implements Output
     protected $tag;
     protected $attrs = array();
     protected $contents;
+    protected $stringContents;
 
     public function __construct($tag)
     {
@@ -55,6 +56,11 @@ class GenTag implements Output
         $this->contents = $conts;
     }
 
+    public function addStringContents($conts)
+    {
+        $this->stringContents = $conts;
+    }
+
     public function write()
     {
         echo "<$this->tag ";
@@ -67,6 +73,10 @@ class GenTag implements Output
         if (!is_null($this->contents))
         {
             $this->contents->write();
+        }
+        else if (!is_null($this->stringContents))
+        {
+            echo $this->stringContents;
         }
 
         echo "</$this->tag>";
@@ -117,7 +127,7 @@ class RichParagraph implements Output
 
 class Section implements Output
 {
-    public $heading = 'TITLE UNSET';
+    public $heading;
 
     protected $paras = array();
     protected $paraCount = 0;
@@ -162,6 +172,12 @@ class Content implements Output
     public function addButton(Button $but)
     {
         $this->sections[$this->secCount] = $but;
+        ++$this->secCount;
+    }
+
+    public function addImageSection(ImageSection $img)
+    {
+        $this->sections[$this->secCount] = $img;
         ++$this->secCount;
     }
 

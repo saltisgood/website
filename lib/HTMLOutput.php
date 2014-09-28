@@ -110,7 +110,7 @@ class HTML implements Output
 
                 if ($count >= 4)
                 {
-                    if (strcmp($path[3], 'about.php') === 0)
+                    if (strcmp($path[3], 'index.php') === 0)
                     {
                         $sideMenu->android->subItems[0]->subItems[0]->active = true;
                     } else if (strcmp($path[3], 'download.php') === 0)

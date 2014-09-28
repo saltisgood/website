@@ -105,7 +105,7 @@ class SideMenu
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'About';
-        $subSubMenu->link = $relPath . 'android/oaa/about.php';
+        $subSubMenu->link = $relPath . 'android/oaa/index.php';
         $subSubMenu->hasLink = true;
         $subMenu->subItems[0] = $subSubMenu;
 
@@ -135,7 +135,7 @@ class SideMenu
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'About';
-        $subSubMenu->link = $relPath . 'android/snap/about.php';
+        $subSubMenu->link = $relPath . 'android/snap/index.php';
         $subSubMenu->hasLink = true;
         $subMenu->subItems[0] = $subSubMenu;
 
