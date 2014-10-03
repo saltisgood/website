@@ -125,6 +125,27 @@ class HTML implements Output
                     }
                 }
             }
+            else if ($count >= 3 && strcmp($path[2], 'snap') === 0)
+            {
+                $sideMenu->android->subItems[1]->active = true;
+
+                if ($count >= 4)
+                {
+                    if (strcmp($path[3], 'index.php') === 0)
+                    {
+                        $sideMenu->android->subItems[1]->subItems[0]->active = true;
+                    } else if (strcmp($path[3], 'download.php') === 0)
+                    {
+                        $sideMenu->android->subItems[1]->subItems[1]->active = true;
+                    } else if (strcmp($path[3], 'help.php') === 0)
+                    {
+                        $sideMenu->android->subItems[1]->subItems[2]->active = true;
+                    } else if (strcmp($path[3], 'source.php') === 0)
+                    {
+                        $sideMenu->android->subItems[1]->subItems[3]->active = true;
+                    }
+                }
+            }
         }
 
         writeSideMenu($sideMenu);

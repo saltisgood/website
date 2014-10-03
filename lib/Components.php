@@ -174,5 +174,16 @@ class ImageSection
             }
             echo '</div>';
         }
+        else if (($this->type & ImageSection::SCREENSHOT) == ImageSection::SCREENSHOT)
+        {
+            if ($this->imageCount < 1)
+            {
+                return;
+            }
+
+            echo "<div class='screenshot $showclass'>";
+            $this->images[0]->write();
+            echo '</div>';
+        }
     }
 }
