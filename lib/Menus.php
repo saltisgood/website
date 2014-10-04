@@ -9,9 +9,16 @@
 function writeHeader($depth, $isTop)
 {
     $pathTop = '';
-    for ($i = 0; $i < $depth; ++$i)
+    if ($depth == 0)
     {
-        $pathTop .= '../';
+        $pathTop = $isTop ? '' : './';
+    }
+    else
+    {
+        for ($i = 0; $i < $depth; ++$i)
+        {
+            $pathTop .= '../';
+        }
     }
 
     echo "<div id='header'><header>
