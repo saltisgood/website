@@ -8,6 +8,7 @@
 
 include_once 'Output.php';
 include_once 'Components.php';
+include_once 'Forms.php';
 
 class Paragraph implements Output
 {

@@ -59,6 +59,44 @@ code p {
 	text-indent: initial;
 }
 
+form table select, form table input, form table textarea {
+	display: block;
+	width: 100%;
+}
+
+form table {
+	margin: 0 auto;
+}
+
+form td {
+	width: 400px;
+	max-width: 400px;
+}
+
+input[type="submit"] {
+	width: initial;
+	margin: 1.5em auto 0;
+	font-size: 1.3em;
+	border-radius: 7px;
+	padding: 0 20px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+td.req:before, td.req::before {
+	content: "*";
+	color: #F00;
+}
+
+td.key {
+	width: 200px;
+	max-width: 200px;
+}
+
+td.key:after, td.key::after {
+	content: ":";
+}
+
 a:hover, a:active, .hov:hover {
 	text-shadow: 0 0 7px #0000F9;
 }
