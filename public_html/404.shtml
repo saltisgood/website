@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="5;url=http://www.nickstephen.com/">
+        <script type="text/javascript">
+		window.setTimeout('window.location="http://www.nickstephen.com/"; ', 6000);
+        </script>
+        <title>Page Not Found!</title>
+    </head>
+    <body>
+		<h1>Oops!</h1>
+		<div>
+			The page you requested (<!--#echo var="REQUEST_URI" -->) was not found on my server...
+		</div>
+        <div>
+			If you are not redirected automatically, follow the <a href='http://www.nickstephen.com'>link back home.</a>
+		</div>
+    </body>
+</html>
