@@ -1,6 +1,0 @@
-
-RewriteEngine on
-RewriteCond %{HTTP_HOST} ^com\.nickstephen\.com$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.com\.nickstephen\.com$
-RewriteRule ^/?$ "http\:\/\/www\.nickstephen\.com\/" [R=301,L]
-
