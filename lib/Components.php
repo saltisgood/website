@@ -61,6 +61,9 @@ class Image
     protected $dimY = 0;
     protected $dimString;
 
+    protected $hasClass = false;
+    protected $class = '';
+
     function __construct($imgLocation, $xSize = 0, $ySize = 0)
     {
         $this->imgLink = $imgLocation;
@@ -96,6 +99,12 @@ class Image
         $this->hasAltText = true;
     }
 
+    function setClass($cls)
+    {
+        $this->hasClass = true;
+        $this->class = $cls;
+    }
+
     function write()
     {
         if ($this->hasAltLink)
@@ -104,6 +113,11 @@ class Image
         }
 
         echo '<img ';
+
+        if ($this->hasClass)
+        {
+            echo "class='$this->class' ";
+        }
 
         if ($this->usesIntDimens)
         {
@@ -123,7 +137,7 @@ class Image
             echo ' alt=""';
         }
 
-        echo " src='$this->imgLink'></img>";
+        echo " src='$this->imgLink' />";
 
         if ($this->hasCaption)
         {

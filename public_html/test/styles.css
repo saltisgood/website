@@ -101,7 +101,7 @@ a:hover, a:active, .hov:hover {
 	text-shadow: 0 0 7px #0000F9;
 }
 
-.hov:hover img, a:hover img, a:active img {
+.hov:hover img, a:hover img, a:active img, .content-feat:hover {
 	box-shadow: 0 0 7px #0000F9;
 }
 
@@ -124,7 +124,7 @@ a:hover, a:active, .hov:hover {
 	cursor: pointer;
 }
 
-.hov img, a img {
+.hov img, a img, .content-feat {
 	transition: box-shadow 1s;
 }
 
@@ -193,6 +193,47 @@ a:hover, a:active, .hov:hover {
 
 .dub-screenshot > div + div {
 	float: right;
+}
+
+.content-feat {
+	max-width: 80%;
+	margin: 1.2em auto;
+	text-align: right;
+	text-indent: 0;
+	background: url('img/menu_button.png');
+	border-radius: 20px;
+	padding: 10px 0;
+	text-shadow: initial;
+}
+
+.content-feat .plain, .content-feat .plain:active, .content-feat .plain:hover {
+	transition: initial;
+	box-shadow: initial;
+	text-shadow: initial;
+}
+
+.content-feat h6 {
+	font-size: 1.2em;
+	padding-right: 30px;
+}
+
+.content-feat p {
+	font-weight: 400;
+}
+
+.content-feat div.feat-desc {
+	float: left;
+	max-width: 50%;
+}
+
+.content-feat img {
+	max-width: 50%;
+	float: right;
+	padding-right: 10%;
+}
+
+.clear {
+	clear: both;
 }
 
 #bg {
