@@ -95,6 +95,25 @@ class Span implements Output
     }
 }
 
+class FeatureContent implements Output
+{
+    public $title;
+    public $desc;
+    public $img;
+    public $link;
+
+    public function write()
+    {
+        $this->img->setClass('plain');
+
+        echo '<a href="', $this->link, '"><div class="content-feat"><div class="feat-desc"><h6>',
+            $this->title, '</h6><p>', $this->desc, '</p>
+            </div>';
+        $this->img->write();
+        echo '<div class="clear"></div></div></a>';
+    }
+}
+
 class RichParagraph implements Output
 {
     protected $text = array();
