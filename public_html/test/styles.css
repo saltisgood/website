@@ -14,18 +14,22 @@ body {
     font-size: 1.1em;
 }
 
-h1 {
+h3 {
     font-size: 2.5em;
     color: #D3D3D3;
 }
 
-h3 {
+h1 {
     font-size: 3em;
     color: #F6F6F6;
 	text-shadow: 4px 4px 4px #BBB;
 }
 
-h4 {
+header h2 {
+    margin-left: 10%;
+}
+
+h2 {
     font-size: 1.75em;
     color: #555;
     font-weight: normal;
@@ -37,6 +41,12 @@ h5 {
 	text-shadow: 4px 4px 4px #BBB;
 }
 
+h6 {
+	font-weight: bold;
+	margin-left: 10px;
+    font-size: 1.1em;
+}
+
 p {
     text-indent: 35px;
     margin-bottom: 0.4em;
@@ -46,17 +56,25 @@ a {
     color: #F6F6F6;
     font-weight: bold;
     text-decoration: none;
+    -webkit-transition: text-shadow 0.5s;
+    -moz-transition: text-shadow 0.5s;
+    -o-transition: text-shadow 0.5s;
 	transition: text-shadow 0.5s;
+}
+
+h6 + ul, h6 + ol {
+	margin-bottom: 0.9em;
+	margin-left: 30px;
+}
+
+h6 + div.code-block {
+	margin-top: 0.5em;
 }
 
 code {
 	margin: 1.5em 30px;
 	display: block;
 	font-size: 1.1em;
-}
-
-code p {
-	text-indent: initial;
 }
 
 form table select, form table input, form table textarea {
@@ -74,7 +92,7 @@ form td {
 }
 
 input[type="submit"] {
-	width: initial;
+	width: auto;
 	margin: 1.5em auto 0;
 	font-size: 1.3em;
 	border-radius: 7px;
@@ -97,12 +115,53 @@ td.key:after, td.key::after {
 	content: ":";
 }
 
+.emph, div.code-block > p {
+	font-weight: bold;
+}
+
+div.code-block {
+	margin: 1.3em 30px;
+	background-color: #FFA;
+	border-radius: 10px;
+	padding: 10px;
+	color: #111;
+}
+
+div.code-block > code {
+	margin: 1em 10px 0;
+}
+
+div.code-block > code > ol {
+	list-style-position: inside;
+}
+
+div.code-block > code > ol > li:nth-child(odd) {
+	background-color: #FFDF8C;
+}
+
 a:hover, a:active, .hov:hover {
 	text-shadow: 0 0 7px #0000F9;
 }
 
 .hov:hover img, a:hover img, a:active img, .content-feat:hover {
 	box-shadow: 0 0 7px #0000F9;
+}
+
+div.img-block {
+	text-align: center;
+	margin: 1em 10px;
+}
+
+.code-b {
+	color: blue;
+}
+
+.code-r {
+	color: red;
+}
+
+.code-g {
+	color: green;
 }
 
 .fleft {
@@ -120,11 +179,17 @@ a:hover, a:active, .hov:hover {
 
 .hov {
     text-decoration: none;
+    -webkit-transition: text-shadow 1s;
+    -moz-transition: text-shadow 1s;
+    -o-transition: text-shadow 1s;
 	transition: text-shadow 1s;
 	cursor: pointer;
 }
 
-.hov img, a img, .content-feat {
+.hov img, a img {
+    -webkit-transition: box-shadow 1s;
+    -moz-transition: box-shadow 1s;
+    -o-transition: box-shadow 1s;
 	transition: box-shadow 1s;
 }
 
@@ -152,6 +217,9 @@ a:hover, a:active, .hov:hover {
 	margin: 30px auto;
 	font-size: 2em;
 	background: #F6F6F6 url('img/menu_button.png') repeat-x;
+    -webkit-transition: background-color 0.3s, color 0.3s;
+    -moz-transition: background-color 0.3s, color 0.3s;
+    -o-transition: background-color 0.3s, color 0.3s;
 	transition: background-color 0.3s, color 0.3s;
 }
 
@@ -203,22 +271,36 @@ a:hover, a:active, .hov:hover {
 	background: url('img/menu_button.png');
 	border-radius: 20px;
 	padding: 10px 0;
-	text-shadow: initial;
+	text-shadow: none;
+	color: #CCC;
+    -webkit-transition: color 1s, box-shadow 1s;
+    -moz-transition: color 1s, box-shadow 1s;
+    -o-transition: color 1s, box-shadow 1s;
+	transition: color 1s, box-shadow 1s;
+}
+
+.content-feat:hover, .content-feat:active {
+	color: #0000F9;
 }
 
 .content-feat .plain, .content-feat .plain:active, .content-feat .plain:hover {
-	transition: initial;
-	box-shadow: initial;
-	text-shadow: initial;
+    -webkit-transition: none
+    -moz-transition: none;
+    -o-transition: none;
+	transition: none;
+	box-shadow: none;
+	text-shadow: none;
 }
 
 .content-feat h6 {
 	font-size: 1.2em;
 	padding-right: 30px;
+	color: white;
 }
 
 .content-feat p {
 	font-weight: 400;
+	color: whitesmoke;
 }
 
 .content-feat div.feat-desc {
@@ -226,10 +308,16 @@ a:hover, a:active, .hov:hover {
 	max-width: 50%;
 }
 
-.content-feat img {
+.content-feat img, .content-feat .feat-r {
 	max-width: 50%;
 	float: right;
 	padding-right: 10%;
+}
+
+.content-feat .feat-r {
+	font-size: 4em;
+	font-style: italic;
+	padding-right: 20%;
 }
 
 .clear {
@@ -262,7 +350,7 @@ a:hover, a:active, .hov:hover {
 }
 
 #content-title {
-    max-width: 40%;
+    max-width: 80%;
     margin: 0 auto 20px;
 }
 
@@ -274,6 +362,12 @@ a:hover, a:active, .hov:hover {
 
 #content-body.menu-page {
 	padding-top: 60px;
+}
+
+#blog-time {
+	float: right;
+	padding-right: 10px;
+	font-size: 0.9em;
 }
 
 /* Header */
@@ -289,7 +383,7 @@ a:hover, a:active, .hov:hover {
     background: linear-gradient(rgba(0,0,10,1), rgba(0,0,10,0.5));
 }
 
-#header h1 {
+#header h3 {
     margin: 0 20px 0;
     padding-top: 20px;
 	text-shadow: 0 0 7px #BBB;
@@ -303,6 +397,14 @@ span#title-low-emph {
     right: 0;
     top: 0;
     padding: 0 20px;
+}
+
+#head-hider {
+    position: absolute;
+}
+
+#head-shower {
+    position: fixed;
 }
 
 /* Side-Menu */
@@ -399,6 +501,7 @@ li .nos-check:checked ~ ul {
     position: absolute;
     right: 0;
     top: 0;
+    padding: 0 20px;
 }
 
 #foot-show {
@@ -454,7 +557,7 @@ li .nos-check:checked ~ ul {
 		background-color: #888888;
 	}
 
-	h1 {
+	h3 {
 		font-size: 1.75em;
 	}
 	
@@ -553,7 +656,7 @@ li .nos-check:checked ~ ul {
 		height: 50px;
 	}
 	
-	#header h1 {
+	#header h3 {
 		padding-top: 5px;
 		font-size: 30px;
 	}

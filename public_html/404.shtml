@@ -4,17 +4,43 @@
         <meta charset="UTF-8">
         <meta http-equiv="refresh" content="5;url=http://www.nickstephen.com/">
         <script type="text/javascript">
-		window.setTimeout('window.location="http://www.nickstephen.com/"; ', 6000);
+		    window.setTimeout('window.location="http://www.nickstephen.com/"; ', 6000);
         </script>
         <title>Page Not Found!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,500" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="/styles.css" >
+        <style>
+            @media (min-width: 601px) { html {background: url('/img/back1.jpg') no-repeat center center fixed;background-size: cover; } }
+        </style>
+        <noscript>
+            <style>
+                .scrpt { display: none; } .noscrpt { display: inline; }
+            </style>
+        </noscript>
     </head>
     <body>
-		<h1>Oops!</h1>
-		<div>
-			The page you requested (<!--#echo var="REQUEST_URI" -->) was not found on my server...
-		</div>
-        <div>
-			If you are not redirected automatically, follow the <a href='http://www.nickstephen.com'>link back home.</a>
-		</div>
+        <div id="content" class="contain">
+            <div id="js-warn" class="noscrpt emph">This website is better with JavaScript enabled! Promise :)</div>
+            <div id="content-title">
+                <header><h1>Oops!</h1></header>
+            </div>
+            <div id="content-body">
+                <p>The page you request (<!--#echo var="REQUEST_URI" -->) was not found on my server...</p>
+                <p>If you are not redirected automatically, follow the <a href="/">link back home.</a></p>
+            </div>
+        </div>
+        <div id="header">
+            <div class="contain">
+                <h3 class="fleft"><a href="/">NickStephen<span id="title-low-emph">.com</span></a></h3>
+            </div>
+        </div>
+        <div id="footer">
+            <footer>
+                <div id="foot-hier"></div>
+                <div class="contain">Nicholas Stephen - 2014</div>
+            </footer>
+        </div>
+        <div id="bg"></div>
     </body>
 </html>

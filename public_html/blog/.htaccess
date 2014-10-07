@@ -1,0 +1,11 @@
+# .htaccess
+RewriteEngine On 	# Turn on the rewrite engine
+
+# Not a valid directory
+RewriteCond %{REQUEST_FILENAME} !-d
+# Not a valid file
+RewriteCond %{REQUEST_FILENAME} !-f
+# Not a valid link
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^([1-9]+[0-9]*)/?$ entry.php?id=$1 [L]	# blog/some_numbers(/) -> blog/entry.php?id=some_numbers
+RewriteRule ^([1-9]+[0-9]*)-([a-zA-Z0-9%\ \+]+)/?$ entry.php?id=$1&title=$2 [L] # blog/some_numbers-Title(/) -> blog/entry.php?id=some_numbers&title=Title

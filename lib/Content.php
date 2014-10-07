@@ -64,10 +64,10 @@ class GenTag implements Output
 
     public function write()
     {
-        echo "<$this->tag ";
+        echo '<', $this->tag, ' ';
         foreach ($this->attrs as $k=>$val)
         {
-            echo "$k=\"$val\"";
+            echo $k, '="', $val, '"';
         }
         echo '>';
 
@@ -80,7 +80,7 @@ class GenTag implements Output
             echo $this->stringContents;
         }
 
-        echo "</$this->tag>";
+        echo '</', $this->tag, '>';
     }
 }
 
@@ -91,7 +91,7 @@ class Span implements Output
 
     public function write()
     {
-        echo "<span class=\"$this->class\">$this->text</span>";
+        echo '<span class="', $this->class, '">', $this->text, '</span>';
     }
 }
 
@@ -136,12 +136,69 @@ class RichParagraph implements Output
 
     public function write()
     {
-        echo "<p>";
+        echo '<p>';
         for ($i = 0; $i < $this->textCount; ++$i)
         {
             $this->text[$i]->write();
         }
-        echo "</p>";
+        echo '</p>';
+    }
+}
+
+class SubSection implements Output
+{
+    public $heading;
+
+    protected $paras = array();
+
+    public function __construct($head = null, $para = null)
+    {
+        $this->heading = $head;
+        if (!is_null($para))
+        {
+            $this->paras[] = $para;
+        }
+    }
+
+    public function addLine($par)
+    {
+        $this->paras[] = $par;
+    }
+
+    public function write()
+    {
+        if (!is_null($this->heading))
+        {
+            echo '<h6>', $this->heading, '</h6>';
+        }
+
+        foreach ($this->paras as $p)
+        {
+            echo '<p>', $p, '</p>';
+        }
+    }
+}
+
+class ListHTML implements Output
+{
+    public $isOrdered = false;
+    protected $items = array();
+
+    public function addItem($item)
+    {
+        $this->items[] = $item;
+    }
+
+    public function write()
+    {
+        echo ($this->isOrdered) ? '<ol>' : '<ul>';
+
+        foreach ($this->items as $item)
+        {
+            echo '<li>', $item, '</li>';
+        }
+
+        echo ($this->isOrdered) ? '</ol>' : '</ul>';
     }
 }
 
@@ -164,7 +221,7 @@ class Section implements Output
     {
         if (!is_null($this->heading))
         {
-            echo "<h5>$this->heading</h5>";
+            echo '<h5>', $this->heading, '</h5>';
         }
         for ($i = 0; $i < $this->paraCount; ++$i)
         {
@@ -203,13 +260,13 @@ class Content implements Output
 
     public function write()
     {
-        echo "<div id='content' class='contain'>
-    <div id='js-warn' class='noscrpt emph'>This website is better with JavaScript enabled! Promise :)</div>
-    <div id='content-title'><header><h3>$this->title</h3>";
+        echo '<div id="content" class="contain">
+    <div id="js-warn" class="noscrpt emph">This website is better with JavaScript enabled! Promise :)</div>
+    <div id="content-title"><header><h1>', $this->title, '</h1>';
 
         if (!is_null($this->subtitle))
         {
-            echo "<h4 style='margin-left:10%;'>$this->subtitle</h4>";
+            echo '<h2>', $this->subtitle, '</h2>';
         }
 
         echo '</header></div><div id="content-body" ';
@@ -226,7 +283,7 @@ class Content implements Output
             $this->sections[$i]->write();
         }
 
-        echo "</div>
-</div>";
+        echo '</div>
+</div>';
     }
 } 

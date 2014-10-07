@@ -18,7 +18,7 @@ class Button
     {
         if ($this->hasLink)
         {
-            echo "<a class='button' href='$this->link' ";
+            echo '<a class="button" href="', $this->link, '"';
         }
         else
         {
@@ -27,10 +27,10 @@ class Button
 
         if ($this->hasId)
         {
-            echo "id='$this->id'";
+            echo 'id="', $this->id, '"';
         }
 
-        echo ">$this->text";
+        echo '>', $this->text;
 
         if ($this->hasLink)
         {
@@ -109,19 +109,19 @@ class Image
     {
         if ($this->hasAltLink)
         {
-            echo "<a target='_blank' href='$this->altLink' />";
+            echo '<a target="_blank" href="', $this->altLink, '" >';
         }
 
         echo '<img ';
 
         if ($this->hasClass)
         {
-            echo "class='$this->class' ";
+            echo 'class="', $this->class, '" ';
         }
 
         if ($this->usesIntDimens)
         {
-            echo "width='$this->dimX' height='$this->dimY' ";
+            echo 'width="', $this->dimX, '" height="', $this->dimY, '" ';
         }
         else
         {
@@ -130,14 +130,14 @@ class Image
 
         if ($this->hasAltText)
         {
-            echo " alt='$this->altText' title='$this->altText'";
+            echo ' alt="', $this->altText, '" title="', $this->altText, '"';
         }
         else
         {
             echo ' alt=""';
         }
 
-        echo " src='$this->imgLink' />";
+        echo ' src="', $this->imgLink, '" />';
 
         if ($this->hasCaption)
         {
@@ -151,12 +151,13 @@ class Image
     }
 }
 
-class ImageSection
+class ImageSection implements Output
 {
     const SHOWCASE = 1;
     const SCREENSHOT = 2;
     const DEFAULT_TYPE = ImageSection::SCREENSHOT;
     const DUB_SCREENSHOT = 4;
+    const BLOCK = 8;
 
     public $type = ImageSection::DEFAULT_TYPE;
 
@@ -179,7 +180,7 @@ class ImageSection
                 return;
             }
 
-            echo "<div class='dub-screenshot $showclass'>";
+            echo '<div class="dub-screenshot ', $showclass, '">';
             for ($i = 0; $i < 2; ++$i)
             {
                 echo '<div>';
@@ -195,9 +196,53 @@ class ImageSection
                 return;
             }
 
-            echo "<div class='screenshot $showclass'>";
+            echo '<div class="screenshot ', $showclass, '">';
             $this->images[0]->write();
             echo '</div>';
         }
+        else if (($this->type & ImageSection::BLOCK) == ImageSection::BLOCK)
+        {
+            echo '<div class="img-block">';
+            foreach ($this->images as $img)
+            {
+                $img->write();
+            }
+            echo '</div>';
+        }
+    }
+}
+
+class CodeBlock implements Output
+{
+    public $heading;
+    protected $lines = array();
+
+    public function __construct($heading = null)
+    {
+        $this->heading = $heading;
+    }
+
+    public function addLine($line)
+    {
+        $this->lines[] = $line;
+    }
+
+    public function write()
+    {
+        echo '<div class="code-block">';
+
+        if (!is_null($this->heading))
+        {
+            echo '<p>', $this->heading, '</p>';
+        }
+
+        echo '<code><ol>';
+
+        foreach ($this->lines as $l)
+        {
+            echo '<li>', $l, '</li>';
+        }
+
+        echo '</ol></code></div>';
     }
 }

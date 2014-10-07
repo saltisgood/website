@@ -29,14 +29,14 @@ class SelectItem
 
     function write()
     {
-        echo "<option value='$this->value' ";
+        echo '<option value="', $this->value, '" ';
 
         if ($this->selected)
         {
             echo 'selected';
         }
 
-        echo ">$this->contents</option>";
+        echo '>', $this->contents, '</option>';
     }
 }
 
@@ -56,7 +56,7 @@ class DropDownSelect extends FormItem
 
     function write()
     {
-        echo "<select name='$this->name'>";
+        echo '<select name="', $this->name, '">';
 
         foreach ($this->items as $item)
         {
@@ -81,7 +81,7 @@ class Input extends FormItem
 
     function write()
     {
-        echo "<input type='$this->type' name='$this->name' value='$this->value'>";
+        echo '<input type="', $this->type, '" name="', $this->name, '" value="', $this->value, '">';
     }
 }
 
@@ -101,7 +101,7 @@ class TextBoxInput extends FormItem
 
     function write()
     {
-        echo "<textarea name='$this->name' rows='$this->rows' cols='$this->cols'>$this->text</textarea>";
+        echo '<textarea name="', $this->name, '" rows="', $this->rows, '" cols="', $this->cols, '">', $this->text, '</textarea>';
     }
 }
 
@@ -127,12 +127,12 @@ class Form implements Output
 
     function write()
     {
-        echo "<form name='$this->name' method='$this->method' action='$this->action'><table>";
+        echo '<form name="', $this->name, '" method="', $this->method, '" action="', $this->action, '"><table>';
 
         foreach ($this->items as $key => $item)
         {
             $cls = $item->required ? 'key req' : 'key';
-            echo "<tr><td class='$cls'>$key</td><td>";
+            echo '<tr><td class="', $cls, '">', $key, '</td><td>';
             $item->write();
             echo '</td>';
         }

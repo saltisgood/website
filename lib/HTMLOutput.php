@@ -9,6 +9,22 @@
 include_once 'Content.php';
 include_once 'Menus.php';
 
+function strStartsWith($haystack, $needle)
+{
+    $length = strlen($needle);
+    return (substr($haystack, 0, $length) === $needle);
+}
+
+function strEndsWith($haystack, $needle)
+{
+    $length = strlen($needle);
+    if ($length == 0) {
+        return true;
+    }
+
+    return (substr($haystack, -$length) === $needle);
+}
+
 class HTML implements Output
 {
     const TITLE_SUF = ' - NickStephen.com';
@@ -16,6 +32,7 @@ class HTML implements Output
     public $content;
     public $relPath = './';
     public $thisPath = '';
+    public $canonicalLink;
 
     function __construct()
     {
@@ -30,39 +47,29 @@ class HTML implements Output
 
     public function writeHeader()
     {
-        echo "<!DOCTYPE html><head>
-            <meta charset='UTF-8' />
-            <title>", $this->content->title;
+        echo '<!DOCTYPE html><head>
+            <meta charset="UTF-8" />
+            <title>', $this->content->title;
 
         if (!is_null($this->content->subtitle))
         {
-            echo " &middot; ", $this->content->subtitle;
+            echo ' &middot; ', $this->content->subtitle;
         }
 
-        echo HTML::TITLE_SUF, "</title>
-            <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-            <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,500' rel='stylesheet' type='text/css'>
-            <link rel='stylesheet' type='text/css' href='", $this->relPath, "styles.css' />
-            <style>
-                @media (min-width: 601px) {
-                        html {
-                            background: url('", $this->relPath, "img/back", rand(1,5),".jpg') no-repeat center center fixed;
-                            background-size: cover;
-                        }
-                    }
-            </style>
-            <noscript>
-                <style>
-                    .scrpt {
-                        display: none;
-                    }
+        echo HTML::TITLE_SUF, '</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />';
 
-                    .noscrpt {
-                        display: inline;
-                    }
-                </style>
-            </noscript>
-            <script>
+        if (!is_null($this->canonicalLink))
+        {
+            echo '<link rel="canonical" href="', $this->canonicalLink, '" />';
+        }
+
+        echo '
+            <link href="http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,500" rel="stylesheet" type="text/css">
+            <link rel="stylesheet" type="text/css" href="/styles.css" />
+            <style> @media (min-width: 601px) { html { background: url(\'/img/back', rand(1,5), '.jpg\') no-repeat center center fixed; background-size: cover; } }</style>
+            <noscript><style> .scrpt { display: none; }  .noscrpt { display: inline; } </style></noscript>',
+            "<script>
    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -71,8 +78,8 @@ class HTML implements Output
   ga('create', 'UA-46464874-1', 'auto');
   ga('send', 'pageview');
 
-</script>
-        </head>";
+    </script>
+</head>";
     }
 
     public function writeBody()
@@ -83,18 +90,14 @@ class HTML implements Output
 
         // Now the main dessert is finished, add the toppings.
 
-        $depth = 0;
-        $isTop = false;
-        if (strcmp($this->thisPath, './index.php') == 0)
+        if (strcmp($this->thisPath, './') == 0)
         {
-            $isTop = true;
+            writeHeader(false, false);
         }
-        else if (stripos($this->relPath, './') !== 0)
+        else
         {
-            $depth = substr_count($this->relPath, '../');
+            writeHeader(strEndsWith($this->thisPath, 'index.php'));
         }
-
-        writeHeader($depth, $isTop);
 
         $sideMenu = new SideMenu($this->relPath);
 
@@ -147,12 +150,16 @@ class HTML implements Output
                 }
             }
         }
+        else if ($count == 3 && strcmp($path[1], 'blog') === 0 && strcmp($path[2], 'index.php') === 0)
+        {
+            $sideMenu->blog->active = true;
+        }
 
         writeSideMenu($sideMenu);
 
-        writeFooter($sideMenu);
+        writeFooter($sideMenu, $this->content->title);
 
         echo '<div id="bg"></div><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
-    <script type="text/javascript" src="', $this->relPath, 'scripts.js" defer></script></body>';
+    <script type="text/javascript" src="/scripts.js" defer></script></body>';
     }
 }

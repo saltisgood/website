@@ -6,38 +6,25 @@
  * Time: 6:15 PM
  */ 
 
-function writeHeader($depth, $isTop)
+function writeHeader($backUp = true, $backToDir = true)
 {
-    $pathTop = '';
-    if ($depth == 0)
+    echo '<div id="header">
+	<div class="contain">
+		<h3 class="fleft"><a href="/">NickStephen<span id="title-low-emph">.com</span></a></h3>';
+
+    if ($backUp)
     {
-        $pathTop = $isTop ? '' : './';
+        echo '<h3 class="fright"><a href="../">Up</a></h3>';
     }
-    else
+    else if ($backToDir)
     {
-        for ($i = 0; $i < $depth; ++$i)
-        {
-            $pathTop .= '../';
-        }
+        echo '<h3 class="fright"><a href="./">Up</a></h3>';
     }
 
-    echo "<div id='header'><header>
-	<div class='contain'>
-		<h1 class='fleft'><a href='$pathTop'>NickStephen<span id='title-low-emph'>.com</span></a></h1>";
-
-    if ($depth != 0)
-    {
-        echo '<h1 class="fright"><a href="../">Up</a></h1>';
-    }
-    else if (!$isTop)
-    {
-        echo '<h1 class="fright"><a href="./">Up</a></h1>';
-    }
-
-	echo "</div>
-	<div class='scrpt hov un-emph' id='head-hider' style='position:absolute'>Hide</div>
-</header></div>
-<div class='scrpt hov hide un-emph' id='head-shower' style='position:fixed'>Show</div>";
+	echo '</div>
+	<div class="scrpt hov un-emph" id="head-hider">Hide</div>
+</div>
+<div class="scrpt hov hide un-emph" id="head-shower">Show</div>';
 }
 
 class MenuItem
@@ -53,7 +40,7 @@ class MenuItem
     {
         if (!$this->hasSubItems && $this->active)
         {
-            echo "<li class='emph'>$this->name</li>";
+            echo '<li class="emph">', $this->name, '</li>';
             return;
         }
 
@@ -63,16 +50,15 @@ class MenuItem
             $id = 'nav-';
             $id .= str_replace(' ', '-', $this->name);
 
-            echo "<input class='nav-check nos-check' id='$id' value='$id' type='checkbox' ";
+            echo '<input class="nav-check nos-check" id="', $id, '" value="', $id, '" type="checkbox" ';
 
             if ($this->active)
             {
                 echo 'checked="true"';
             }
 
-            echo "/><label for='$id' class='nav-label'>$this->name</label>";
-
-            echo '<ul>';
+            echo '/><label for="', $id, '" class="nav-label">', $this->name, '</label>
+            <ul>';
 
             foreach ($this->subItems as $item)
             {
@@ -83,7 +69,7 @@ class MenuItem
         }
         else if ($this->hasLink)
         {
-            echo "<a href='$this->link'>$this->name</a>";
+            echo '<a href="', $this->link, '">', $this->name, '</a>';
         }
 
         echo '</li>';
@@ -97,6 +83,7 @@ class SideMenu
     public $webDev;
     public $about;
     public $contact;
+    public $blog;
 
     function __construct($relPath)
     {
@@ -112,25 +99,25 @@ class SideMenu
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'About';
-        $subSubMenu->link = $relPath . 'android/oaa/index.php';
+        $subSubMenu->link = '/android/oaa/index.php';
         $subSubMenu->hasLink = true;
         $subMenu->subItems[0] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Download';
-        $subSubMenu->link = $relPath . 'android/oaa/download.php';
+        $subSubMenu->link = '/android/oaa/download.php';
         $subSubMenu->hasLink = true;
         $subMenu->subItems[1] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Help';
-        $subSubMenu->link = $relPath . 'android/oaa/help.php';
+        $subSubMenu->link = '/android/oaa/help.php';
         $subSubMenu->hasLink = true;
         $subMenu->subItems[2] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Source';
-        $subSubMenu->link = $relPath . 'android/oaa/source.php';
+        $subSubMenu->link = '/android/oaa/source.php';
         $subSubMenu->hasLink = true;
         $subMenu->subItems[3] = $subSubMenu;
 
@@ -142,25 +129,25 @@ class SideMenu
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'About';
-        $subSubMenu->link = $relPath . 'android/snap/index.php';
+        $subSubMenu->link = '/android/snap/index.php';
         $subSubMenu->hasLink = true;
         $subMenu->subItems[0] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Download';
-        $subSubMenu->link = $relPath . 'android/snap/download.php';
+        $subSubMenu->link = '/android/snap/download.php';
         $subSubMenu->hasLink = true;
         $subMenu->subItems[1] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Help';
-        $subSubMenu->link = $relPath . 'android/snap/help.php';
+        $subSubMenu->link = '/android/snap/help.php';
         $subSubMenu->hasLink = true;
         $subMenu->subItems[2] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Source';
-        $subSubMenu->link = $relPath . 'android/snap/source.php';
+        $subSubMenu->link = '/android/snap/source.php';
         $subSubMenu->hasLink = true;
         $subMenu->subItems[3] = $subSubMenu;
 
@@ -168,18 +155,23 @@ class SideMenu
 
         $this->webDev = new MenuItem();
         $this->webDev->name = 'Web Development';
-        $this->webDev->link = $relPath . 'webdev.php';
+        $this->webDev->link = '/webdev.php';
         $this->webDev->hasLink = true;
 
         $this->about = new MenuItem();
         $this->about->name = 'About Me';
-        $this->about->link = $relPath . 'about.php';
+        $this->about->link = '/about.php';
         $this->about->hasLink = true;
 
         $this->contact = new MenuItem();
         $this->contact->name = 'Contact Me';
-        $this->contact->link = $relPath . 'contact.php';
+        $this->contact->link = '/contact.php';
         $this->contact->hasLink = true;
+
+        $this->blog = new MenuItem();
+        $this->blog->name = 'Blogs';
+        $this->blog->link = '/blog/index.php';
+        $this->blog->hasLink = true;
     }
 
     function write()
@@ -189,6 +181,7 @@ class SideMenu
         $this->webDev->write();
         $this->about->write();
         $this->contact->write();
+        $this->blog->write();
         echo '</ul>';
     }
 }
@@ -204,7 +197,7 @@ function writeSideMenu(SideMenu $menu)
     echo '</div></div></nav><div class="scrpt hov hide un-emph" id="side-menu-open">Show Nav</div>';
 }
 
-function writeFooter(SideMenu $menu)
+function writeFooter(SideMenu $menu, $title = '')
 {
     echo '
 <div id="footer"><footer>
@@ -217,14 +210,14 @@ function writeFooter(SideMenu $menu)
 
         if ($name !== false)
         {
-            echo "<a class='navi' href='./'>Home</a> &gt; $name";
+            echo '<a class="navi" href="/">Home</a> &gt; ', $name;
         }
     }
     else
     {
         $rel = $menu->relativePath;
 
-        echo "<a class='navi' href='$rel'>Home</a> &gt; ";
+        echo '<a class="navi" href="/">Home</a> &gt; ';
 
         $rel = substr($rel, 3);
 
@@ -237,14 +230,18 @@ function writeFooter(SideMenu $menu)
         } else if ($menu->about->active)
         {
             $subMenu = $menu->about;
-        } else
+        } else if ($menu->contact->active)
         {
             $subMenu = $menu->contact;
+        } else
+        {
+            echo '<a class="navi" href="./">Blogs</a> &gt; ', $title;
+            goto finish;
         }
 
         while ($rel !== false)
         {
-            echo "<a class='navi' href='$rel'>$subMenu->name</a> &gt; ";
+            echo '<a class="navi" href="', $rel, '">', $subMenu->name, '</a> &gt; ';
 
             $rel = substr($rel, 3);
             foreach ($subMenu->subItems as $m)
@@ -260,9 +257,10 @@ function writeFooter(SideMenu $menu)
         echo $subMenu->name;
     }
 
+finish:
     echo '</div>
 	<div class="contain">Nicholas Stephen - 2014</div>
-	<div class="scrpt hov un-emph" id="foot-hide" style="padding:0 20px;">Hide</div>
+	<div class="scrpt hov un-emph" id="foot-hide">Hide</div>
 </footer></div>
 <div class="scrpt hov hide un-emph" id="foot-show">Show</div>';
 }
