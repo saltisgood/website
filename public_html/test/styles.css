@@ -67,6 +67,10 @@ h6 + ul, h6 + ol {
 	margin-left: 30px;
 }
 
+h6 + ul li {
+    margin-bottom: 0.2em;
+}
+
 h6 + div.code-block {
 	margin-top: 0.5em;
 }
