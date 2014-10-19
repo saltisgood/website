@@ -150,6 +150,10 @@ class HTML implements Output
                 }
             }
         }
+        else if ($count == 2 && strcmp($path[1], 'contact.php') === 0)
+        {
+            $sideMenu->contact->active = true;
+        }
         else if ($count == 3 && strcmp($path[1], 'blog') === 0 && strcmp($path[2], 'index.php') === 0)
         {
             $sideMenu->blog->active = true;

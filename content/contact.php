@@ -23,7 +23,7 @@ include $rel . 'lib/HTMLOutput.php';
 $htmlOut = new HTML();
 
 $htmlOut->relPath = './';
-$htmlOut->thisPath = './';
+$htmlOut->thisPath = './contact.php';
 
 $htmlOut->content->title = 'Contact Me';
 
