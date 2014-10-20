@@ -21,28 +21,12 @@ $htmlOut->thisPath = './';
 $htmlOut->content->title = 'Welcome!';
 $htmlOut->content->isMenu = true;
 
-$butt = new Button();
-$butt->text = 'Android';
-$butt->link = '/android/';
-$butt->hasLink = true;
-$htmlOut->content->addButton($butt);
+$htmlOut->content->addButton(new Button('Android', '/android/'));
 
-$butt = new Button();
-$butt->text = 'Web Development';
-$butt->link = './webdev.php';
-$butt->hasLink = true;
-$htmlOut->content->addButton($butt);
+$htmlOut->content->addButton(new Button('About Me', 'about.php'));
 
-$butt = new Button();
-$butt->text = 'About Me';
-$butt->link = './about.php';
-$butt->hasLink = true;
-$htmlOut->content->addButton($butt);
+$htmlOut->content->addButton(new Button('Contact Me', 'contact.php'));
 
-$butt = new Button();
-$butt->text = 'Contact Me';
-$butt->link = './contact.php';
-$butt->hasLink = true;
-$htmlOut->content->addButton($butt);
+$htmlOut->content->addButton(new Button('Blogs', '/blog/'));
 
 $htmlOut->write();

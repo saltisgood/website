@@ -25,21 +25,14 @@ $html->content->title = 'Blogs';
 
 if ($blogs === false)
 {
-    $sec = new Section();
-    $sec->heading = 'Uh-Oh!';
-
-    $para = new Paragraph();
-    $para->text = 'Something went wrong retrieving the latest blogs!';
-
-    $sec->addParagraph($para);
-    $html->content->addSection($sec);
+    $html->content->addSection(new Section('Uh-Oh!',
+        new Paragraph('Something went wrong retrieving the latest blogs!')));
 
     $html->write();
 }
 else
 {
-    $sec = new Section();
-    $sec->heading = 'Latest';
+    $sec = new Section('Latest');
 
     foreach ($blogs as $blog)
     {

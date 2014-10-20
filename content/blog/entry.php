@@ -33,13 +33,7 @@ if (!$blog)
 {
     $html->content->title = 'Nope!';
 
-    $para = new Paragraph();
-    $para->text = 'Sorry, but I can\'t seem to find that one!';
-
-    $sec = new Section();
-    $sec->addParagraph($para);
-
-    $html->content->addSection($sec);
+    $html->content->addSection(new Section(null, new Paragraph('Sorry, but I can\'t seem to find that one!')));
 }
 else
 {

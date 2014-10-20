@@ -14,6 +14,17 @@ class Button
     public $id = '';
     public $hasId = false;
 
+    function __construct($text = null, $link = null)
+    {
+        $this->text = $text;
+
+        if (!is_null($link))
+        {
+            $this->link = $link;
+            $this->hasLink = true;
+        }
+    }
+
     function write()
     {
         if ($this->hasLink)
@@ -85,24 +96,28 @@ class Image
     {
         $this->caption = $cap;
         $this->hasCaption = true;
+        return $this;
     }
 
     function setAltLink($alt)
     {
         $this->altLink = $alt;
         $this->hasAltLink = true;
+        return $this;
     }
 
     function setAltText($alt)
     {
         $this->altText = $alt;
         $this->hasAltText = true;
+        return $this;
     }
 
     function setClass($cls)
     {
         $this->hasClass = true;
         $this->class = $cls;
+        return $this;
     }
 
     function write()
@@ -159,23 +174,30 @@ class ImageSection implements Output
     const DUB_SCREENSHOT = 4;
     const BLOCK = 8;
 
-    public $type = ImageSection::DEFAULT_TYPE;
+    public $type;
 
     protected $images = array();
-    protected $imageCount = 0;
+
+    function __construct($type = ImageSection::DEFAULT_TYPE)
+    {
+        $this->type = $type;
+    }
 
     function addImage(Image $img)
     {
-        $this->images[$this->imageCount++] = $img;
+        $this->images[] = $img;
+        return $this;
     }
 
     function write()
     {
         $showclass = (($this->type & ImageSection::SHOWCASE) == ImageSection::SHOWCASE) ? 'img-showcase' : '';
 
+        $imgCount = count($this->images);
+
         if (($this->type & ImageSection::DUB_SCREENSHOT) == ImageSection::DUB_SCREENSHOT)
         {
-            if ($this->imageCount < 2)
+            if ($imgCount < 2)
             {
                 return;
             }
@@ -191,7 +213,7 @@ class ImageSection implements Output
         }
         else if (($this->type & ImageSection::SCREENSHOT) == ImageSection::SCREENSHOT)
         {
-            if ($this->imageCount < 1)
+            if ($imgCount < 1)
             {
                 return;
             }
@@ -225,6 +247,7 @@ class CodeBlock implements Output
     public function addLine($line)
     {
         $this->lines[] = $line;
+        return $this;
     }
 
     public function write()

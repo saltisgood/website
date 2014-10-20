@@ -14,6 +14,11 @@ class Paragraph implements Output
 {
     public $text;
 
+    public function __construct($text = null)
+    {
+        $this->text = $text;
+    }
+
     public function write()
     {
         echo '<p>';
@@ -29,6 +34,11 @@ class Text implements Output
 {
     public $text;
 
+    public function __construct($text = null)
+    {
+        $this->text = $text;
+    }
+
     public function write()
     {
         echo $this->text;
@@ -42,24 +52,28 @@ class GenTag implements Output
     protected $contents;
     protected $stringContents;
 
-    public function __construct($tag)
+    public function __construct($tag, $strContents = null)
     {
         $this->tag = $tag;
+        $this->stringContents = $strContents;
     }
 
     public function addAttr($attr, $val)
     {
         $this->attrs[$attr] = $val;
+        return $this;
     }
 
     public function addContents(Output $conts)
     {
         $this->contents = $conts;
+        return $this;
     }
 
     public function addStringContents($conts)
     {
         $this->stringContents = $conts;
+        return $this;
     }
 
     public function write()
@@ -89,6 +103,12 @@ class Span implements Output
     public $class;
     public $text;
 
+    public function __construct($class = null, $text = null)
+    {
+        $this->class = $class;
+        $this->text = $text;
+    }
+
     public function write()
     {
         echo '<span class="', $this->class, '">', $this->text, '</span>';
@@ -101,6 +121,24 @@ class FeatureContent implements Output
     public $desc;
     public $img;
     public $link;
+
+    public function __construct($title = null, $desc = null)
+    {
+        $this->title = $title;
+        $this->desc = $desc;
+    }
+
+    public function setImage(Image $img)
+    {
+        $this->img = $img;
+        return $this;
+    }
+
+    public function setLink($link)
+    {
+        $this->link = $link;
+        return $this;
+    }
 
     public function write()
     {
@@ -122,16 +160,19 @@ class RichParagraph implements Output
     public function addText(Text $txt)
     {
         $this->text[$this->textCount++] = $txt;
+        return $this;
     }
 
     public function addSpan(Span $spn)
     {
         $this->text[$this->textCount++] = $spn;
+        return $this;
     }
 
     public function addOutput(Output $out)
     {
         $this->text[$this->textCount++] = $out;
+        return $this;
     }
 
     public function write()
@@ -163,6 +204,7 @@ class SubSection implements Output
     public function addLine($par)
     {
         $this->paras[] = $par;
+        return $this;
     }
 
     public function write()
@@ -181,16 +223,34 @@ class SubSection implements Output
 
 class ListHTML implements Output
 {
+    protected $heading;
     public $isOrdered = false;
     protected $items = array();
+
+    public function __construct($heading = null)
+    {
+        $this->heading = $heading;
+    }
 
     public function addItem($item)
     {
         $this->items[] = $item;
+        return $this;
+    }
+
+    public function setOrdered($isOrdered)
+    {
+        $this->isOrdered = $isOrdered;
+        return $this;
     }
 
     public function write()
     {
+        if (!is_null($this->heading))
+        {
+            echo '<h6>', $this->heading, '</h6>';
+        }
+
         echo ($this->isOrdered) ? '<ol>' : '<ul>';
 
         foreach ($this->items as $item)
@@ -207,14 +267,25 @@ class Section implements Output
     public $heading;
 
     protected $paras = array();
-    protected $paraCount = 0;
+
+    public function __construct($heading = null, Output $par = null)
+    {
+        $this->heading = $heading;
+
+        if (!is_null($par))
+        {
+            $this->paras[] = $par;
+        }
+    }
 
     public function addParagraph(Output $par)
     {
         if (!is_null($par))
         {
-            $this->paras[$this->paraCount++] = $par;
+            $this->paras[] = $par;
         }
+
+        return $this;
     }
 
     public function write()
@@ -223,9 +294,10 @@ class Section implements Output
         {
             echo '<h5>', $this->heading, '</h5>';
         }
-        for ($i = 0; $i < $this->paraCount; ++$i)
+
+        foreach ($this->paras as $para)
         {
-            $this->paras[$i]->write();
+            $para->write();
         }
     }
 }
