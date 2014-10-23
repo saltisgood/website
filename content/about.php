@@ -22,6 +22,9 @@ $html->content->title = 'About Me';
 
 $html->content->addSection((new Section())
     ->addParagraph(new Paragraph('Well, hello there! My name\'s Nicholas Stephen and this is my website.'))
+    ->addParagraph((new ListHTML('Important Links:'))
+        ->addItem('<a href="https://github.com/saltisgood">My GitHub</a>')
+        ->addItem('<a href="https://www.youtube.com/user/nickSTEVOstephen">My YouTube</a>'))
     ->addParagraph(new Paragraph('I\'m a 22 year old Australian currently living in Sydney. I recently graduated from the
 <a href="http://sydney.edu.au/">University of Sydney</a> with a Bachelor of Science (Computer Science) and I attended
 <a href="http://www.barker.nsw.edu.au/">Barker College</a> as my school.'))
