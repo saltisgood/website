@@ -80,7 +80,6 @@ class SideMenu
 {
     public $relativePath = '';
     public $android;
-    public $webDev;
     public $about;
     public $contact;
     public $blog;
@@ -153,11 +152,6 @@ class SideMenu
 
         $this->android->subItems[1] = $subMenu;
 
-        $this->webDev = new MenuItem();
-        $this->webDev->name = 'Web Development';
-        $this->webDev->link = '/webdev.php';
-        $this->webDev->hasLink = true;
-
         $this->about = new MenuItem();
         $this->about->name = 'About Me';
         $this->about->link = '/about.php';
@@ -178,7 +172,6 @@ class SideMenu
     {
         echo '<ul>';
         $this->android->write();
-        $this->webDev->write();
         $this->about->write();
         $this->contact->write();
         $this->blog->write();
@@ -205,8 +198,8 @@ function writeFooter(SideMenu $menu, $title = '')
 
     if (strcmp($menu->relativePath, './') === 0)
     {
-        $name = $menu->android->active ? $menu->android->name : ($menu->webDev->active ? $menu->webDev->name :
-            ($menu->about->active ? $menu->about->name : ($menu->contact->active ? $menu->contact->name : false)));
+        $name = $menu->android->active ? $menu->android->name :
+            ($menu->about->active ? $menu->about->name : ($menu->contact->active ? $menu->contact->name : false));
 
         if ($name !== false)
         {
@@ -224,9 +217,6 @@ function writeFooter(SideMenu $menu, $title = '')
         if ($menu->android->active)
         {
             $subMenu = $menu->android;
-        } else if ($menu->webDev->active)
-        {
-            $subMenu = $menu->webDev;
         } else if ($menu->about->active)
         {
             $subMenu = $menu->about;
