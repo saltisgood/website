@@ -1,0 +1,185 @@
+TITLE:Pretty C++ Templates
+SUBTITLE:Separation of Interface and Implementation
+DESC:The simple way to remove the implementation of your C++ Templates from their class definitions.
+TAGS:C++;Templates;
+CONTENT:
+{head}C++ Templates{/head}
+{body}
+Templates are wonderful things. They allow us to create strongly typed but reusable collections, generate efficient function definitions and perform static type analysis, to name but a few uses.
+They're also bloody annoying. Overly verbose, sometimes complicated and will spit out incredibly cryptic error messages if you mess something up.
+That said, sometimes they're just the right tools for the job so you'd better learn to use them.
+{/body}
+
+{head}Location Location Location{/head}
+{body}
+One thing you'll learn pretty soon about templates in C++ is that they are almost always written entirely in header files. The reason for this is that whenever you use a template the compiler instantiates a new copy of the class/function and so it requires a definition of the methods or function. If the function is defined inside a different source file then the definition isn't available (unless of course you are #including that source file, in which case prepare for plenty more errors). Because of this, the typical solution is to simply declare and implement functions at the same time. That's certainly what Microsoft does:
+{img}
+{src}Forward List.png{/src}
+{alt}The VS implementation of std::forward_list{/alt}
+{/img}
+Declaration and definition in one place and it's a mess to look at. Microsoft isn't particularly concerned about this because you don't normally read this code. This is their implementation of the standard library so you should only be using the facilities as documented by the C++ standard, which is so nicely represented by <a href="http://www.cplusplus.com/reference/">other people</a>.
+{/body}
+
+{head}There Must Be A Better Way{/head}
+{body}
+And thankfully there is! The only requirement for templates to work is that they remain accessible to the compiler, not that they have to reside inside the class/function declaration. This gives a little flexibility, not much but a little. If you want the template to truly be general and be available for any template argument now and in the future without modification then the template must be fully defined before the end of the header file. However, if you only want or need the template to work for a few select arguments then you can defer the definitions to a source file.
+{/body}
+
+{head}Templates In a Source File{/head}
+{body}
+{subhead}Usage Case:{/subhead}
+{ul}
+Small/ Fixed number of template arguments
+{/ul}
+{subhead}Pros:{/subhead}
+{ul}
+Can hide implementation in source file
+No need to fully recompile program upon implementation change
+{/ul}
+{subhead}Cons:{/subhead}
+{ul}
+Unsuitable for library code as every possible argument must be explicitly declared at the same time as the definitions
+{/ul}
+
+{subhead}Implementation:{/subhead}
+{code}
+\{head\}File: Example.h\{/head\}
+\{lang\}CPP\{/lang\}
+namespace ex
+{
+	template < typename T >
+	class Foo
+	{
+		public:
+			Foo();
+			Foo( const Foo < T > & );
+			
+			int doSomething();
+			
+			template < typename U >
+			U paramDo();
+	};
+
+	template < typename T , typename U >
+	U func( T param );
+}
+\{/code\}
+
+{code}
+\{head\}File: Example.cpp\{/head\}
+#include "Example.h"
+
+using namespace ex;
+
+template < typename T >
+Foo < T > ::Foo()
+{}
+
+template < typename T >
+Foo < T > ::Foo( const Foo < T > &cpy )
+{}
+
+template < typename T >
+int Foo < T > ::doSomething()
+{}
+
+template < typename T >
+template < typename U >
+U Foo < T > ::paramDo < U > ()
+{}
+
+template < typename T , typename U >
+U ex ::func < T , U > ( T param )
+{}
+
+// Explicit Instantiations
+template class Foo < int >;
+template class Foo < float >;
+template class Foo < Bar >;
+
+template int ex ::func < int , float > ( float );
+template Foo ex ::func < Foo , Bar > ( Bar );
+\{/code\}
+
+{subhead}Explanation:{/subhead}
+Pretty straightforward really. The method definitions just have template <typename T> prepended and the parameter is then placed into the method signature. Other than that they're no different from normal method definitions.
+The only strange one is method: paramDo(). paramDo() has the original template parameter of T which is for its surrounding class Foo, but it also has a second type parameter unique to it. For this reason there are 2 separate template declarations and the second parameter is placed at the end of the method name. You can't put both type parameters into a single template declaration unfortunately since they refer to 2 different instantiations. You can do it for the standalone template function as this uses both parameters at once.
+Finally there are the template instantiations. These are identical and analogous to forward declarations, save for the prefix: template. 
+With this setup you can use any of these templates in any other part of the program as long as you include Example.h and the template arguments are one of those stated explicitly in Example.cpp. If you attempt to use one with an argument not explicitly stated then this will cause a linker error.
+
+Note: The only reason for the namespace here is to make sure that the standalone function gets properly attached to the declaration in the header.
+{/body}
+
+{head}Templates in Headers{/head}
+{body}
+This is my recommended solution.
+
+{subhead}Usage Case:{/subhead}
+{ul}
+Whenever you need a general template
+{/ul}
+{subhead}Pros:{/subhead}
+{ul}
+Allows any template arguments
+{/ul}
+{subhead}Cons:{/subhead}
+{ul}
+Implementation is fully exposed
+{/ul}
+
+{subhead}Implementation:{/subhead}
+{code}
+\{head\}File: Example.h\{/head\}
+namespace ex
+{
+	template < typename T >
+	class Foo
+	{
+		public:
+			Foo();
+			Foo( const Foo < T > & );
+			
+			int doSomething();
+			
+			template < typename U >
+			U paramDo();
+	};
+
+	template < typename T , typename U >
+	U func( T param );
+	
+#pragma region Implementations
+	
+	template < typename T >
+	Foo < T > ::Foo()
+	{}
+
+	template < typename T >
+	Foo < T > ::Foo( const Foo < T > &cpy )
+	{}
+
+	template < typename T >
+	int Foo < T > ::doSomething()
+	{}
+
+	template < typename T >
+	template < typename U >
+	U Foo < T > ::paramDo < U > ()
+	{}
+
+	template < typename T , typename U >
+	U func < T , U > ( T param )
+	{}
+	
+#pragma endregion
+}
+\{/code\}
+
+{subhead}Explanation:{/subhead}
+As you can see, the syntax is identical to the previous case, it's just appended to the end of the header. If you really don't want the implementations written in the same file then you can create another file, say Example.hpp, put the definitions in there and then #include that file from the bottom of Example.h. I prefer to skip that though and wrap the implementations in a #pragma region, which in Visual Studio folds away the code. Either way, the full definitions MUST be included somehow in any translation unit in which the header is included. 
+{/body}
+
+{head}Wrap Up{/head}
+{body}
+These are 2 very easy ways of having your own templates but not having to wade through code to figure out how to use them. Give it a go and check out how it cleans up your code. I guarantee you'll thank yourself later.
+{/body}

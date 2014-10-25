@@ -31,7 +31,7 @@ header h2 {
 
 h2 {
     font-size: 1.75em;
-    color: #555;
+    color: #bbb;
     font-weight: normal;
     font-style: italic;
 }
@@ -39,6 +39,7 @@ h2 {
 h5 {
     font-size: 1.4em;
 	text-shadow: 4px 4px 4px #BBB;
+    margin-top: 1em;
 }
 
 h6 {
@@ -49,7 +50,7 @@ h6 {
 
 p {
     text-indent: 35px;
-    margin-bottom: 0.4em;
+    margin-bottom: 0.5em;
 }
 
 a {
@@ -76,10 +77,14 @@ h6 + div.code-block {
 }
 
 code {
+    font-size: 1.1em;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+div.code-block code {
 	margin: 1.5em 30px;
 	display: block;
-	font-size: 1.1em;
-    text-align: left;
 }
 
 form table select, form table input, form table textarea {
@@ -136,8 +141,26 @@ div.code-block > code {
 	margin: 1em 10px 0;
 }
 
-div.code-block > code > ol {
+ol {
 	list-style-position: inside;
+    margin-left: 15px;
+}
+
+ol li {
+    margin-bottom: 0.8em;
+}
+
+li img {
+    margin: 15px 50px;
+    display: block;
+}
+
+div.code-block ol {
+    margin-left: 0;
+}
+
+div.code-block li {
+    margin-bottom: 0.1em;
 }
 
 div.code-block > code > ol > li:nth-child(odd) {
@@ -334,7 +357,7 @@ div.img-block {
 }
 
 #bg {
-	background-color: #888888;
+	background-color: #444;
 	position:fixed;
 	height: 100%;
 	width: 800px;
@@ -347,7 +370,7 @@ div.img-block {
 }
 
 #content {
-    background-color: #888888;
+    background-color: #444;
     padding: 90px 0 60px;
 }
 
@@ -365,7 +388,6 @@ div.img-block {
 
 #content-body {
     padding: 0 10px;
-    text-align: justify;
     color: #E1E1E1;
 }
 
@@ -525,12 +547,12 @@ li .nos-check:checked ~ ul {
 	.contain, #bg {
 		width: 90%;
 	}
-	
+
 	#side-menu {
 		opacity: 0;
 		left:-100%;
 	}
-	
+
 	#side-menu-open {
 		transform: rotate(-90deg);
 		transform-origin: 0 0;
@@ -538,20 +560,20 @@ li .nos-check:checked ~ ul {
 		opacity: 1;
 		display: block;
 	}
-	
+
 	#footer {
 		padding-top: 15px;
 		height: 35px;
 	}
-	
+
 	#foot-hier, #footer .contain {
 		display: inline;
 		position: static;
 		text-align: left;
 	}
-	
+
 	#footer .contain {
-		margin-left: 50px; 
+		margin-left: 50px;
 	}
 }
 
@@ -563,43 +585,43 @@ li .nos-check:checked ~ ul {
 
 @media(max-width: 600px) {
 	html {
-		background-color: #888888;
+		background-color: #444;
 	}
 
 	h3 {
 		font-size: 1.75em;
 	}
-	
+
 	.contain{
 		width: 100%;
 	}
-	
+
 	.dub-screenshot > div, .dub-screenshot > div + div {
 		float: none;
 	}
-	
+
 	.dub-screenshot img {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
 	}
-	
+
 	.img-caption {
 		margin-bottom: 10px;
 	}
-	
+
 	nav {
 		padding: 0 25% 10px 2%;
 	}
-	
+
 	#bg {
 		display: none;
 	}
-	
+
 	#content {
 		padding-bottom: 10px;
 	}
-	
+
 	#content-title {
 		max-width: 100%;
 		margin-left: 5%;
@@ -609,42 +631,42 @@ li .nos-check:checked ~ ul {
 	#content-body {
 		text-align: left;
 	}
-	
+
 	#head-hider {
 		opacity: 0;
 		display: none;
 	}
-	
+
 	#header .fright {
 		opacity: 0;
 		display: none;
 	}
-	
+
 	#foot-hier {
 		opacity: 0;
 		display: none;
 	}
-	
+
 	#side-menu {
 		position: static;
 		opacity: 1;
 		padding-bottom: 20px;
 	}
-	
+
 	#side-menu-close {
 		opacity: 0;
 		display: none;
 	}
-	
+
 	#side-menu-open {
 		opacity: 0;
 		display: none;
 	}
-	
+
 	#footer {
 		position: static;
 	}
-	
+
 	#foot-hide {
 		opacity: 0;
 		display: none;
@@ -655,7 +677,7 @@ li .nos-check:checked ~ ul {
 	body {
 		position: relative;
 	}
-	
+
 	#content {
 		padding-top: 50px;
 	}
@@ -664,17 +686,17 @@ li .nos-check:checked ~ ul {
 		position: absolute;
 		height: 50px;
 	}
-	
+
 	#header h3 {
 		padding-top: 5px;
 		font-size: 30px;
 	}
-	
+
 	#head-hider {
 		opacity: 0;
 		display: none;
 	}
-	
+
 	#foot-hide {
 		opacity: 0;
 		display: none;
