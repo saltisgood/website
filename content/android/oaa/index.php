@@ -11,12 +11,20 @@ if (!isset($rel))
     $rel = '../../../';
 }
 
-include $rel . 'lib/HTMLOutput.php';
+require $rel . 'lib/HTMLOutput.php';
+
+function setupMenu(SideMenu $menu)
+{
+    $menu->software->active = true;
+    $menu->software->subItems[SOFT_ANDR]->active = true;
+    $menu->software->subItems[SOFT_ANDR]->subItems[SOFT_ANDR_OAA]->active = true;
+    $menu->software->subItems[SOFT_ANDR]->subItems[SOFT_ANDR_OAA]->subItems[SOFT_ANDR_OAA_IND]->active = true;
+}
 
 $htmlOut = new HTML();
 
 $htmlOut->relPath = '../.././';
-$htmlOut->thisPath = './android/oaa/index.php';
+$htmlOut->thisPath = './software/android/oaa/index.php';
 
 $htmlOut->content->title = 'About';
 $htmlOut->content->subtitle = 'Open App Android';

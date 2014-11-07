@@ -14,6 +14,11 @@ if (!isset($rel))
 require $rel . 'lib/HTMLOutput.php';
 require $rel . 'lib/DBStuff.php';
 
+function setupMenu(SideMenu $menu)
+{
+    $menu->blog->active = true;
+}
+
 $blogs = retrieveLatestPosts(5);
 
 $html = new HTML();

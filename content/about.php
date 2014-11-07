@@ -13,6 +13,11 @@ if (!isset($rel))
 
 require $rel . 'lib/HTMLOutput.php';
 
+function setupMenu(SideMenu $menu)
+{
+    $menu->about->active = true;
+}
+
 $html = new HTML();
 
 $html->relPath = './';

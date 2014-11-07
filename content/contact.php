@@ -18,7 +18,12 @@ if (!isset($rel))
     $rel = '../';
 }
 
-include $rel . 'lib/HTMLOutput.php';
+require $rel . 'lib/HTMLOutput.php';
+
+function setupMenu(SideMenu $menu)
+{
+    $menu->contact->active = true;
+}
 
 $htmlOut = new HTML();
 

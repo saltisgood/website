@@ -11,12 +11,18 @@ if (!isset($rel))
     $rel = '../../';
 }
 
-include $rel . 'lib/HTMLOutput.php';
+require $rel . 'lib/HTMLOutput.php';
+
+function setupMenu(SideMenu $menu)
+{
+    $menu->software->active = true;
+    $menu->software->subItems[SOFT_ANDR]->active = true;
+}
 
 $htmlOut = new HTML();
 
 $htmlOut->relPath = '.././';
-$htmlOut->thisPath = './android/index.php';
+$htmlOut->thisPath = './software/index.php';
 
 $htmlOut->content->title = 'Android';
 

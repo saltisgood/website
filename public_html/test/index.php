@@ -8,4 +8,4 @@
 
 $rel = '../../';
 
-include $rel . 'content/index.php';
+require $rel . 'content/index.php';

@@ -11,12 +11,20 @@ if (!isset($rel))
     $rel = '../../../';
 }
 
-include $rel . 'lib/HTMLOutput.php';
+require $rel . 'lib/HTMLOutput.php';
+
+function setupMenu(SideMenu $menu)
+{
+    $menu->software->active = true;
+    $menu->software->subItems[SOFT_ANDR]->active = true;
+    $menu->software->subItems[SOFT_ANDR]->subItems[SOFT_ANDR_SNAP]->active = true;
+    $menu->software->subItems[SOFT_ANDR]->subItems[SOFT_ANDR_SNAP]->subItems[SOFT_ANDR_SNAP_DOWN]->active = true;
+}
 
 $htmlOut = new HTML();
 
 $htmlOut->relPath = '../.././';
-$htmlOut->thisPath = './android/snap/download.php';
+$htmlOut->thisPath = './software/android/snap/download.php';
 
 $htmlOut->content->title = 'Download';
 $htmlOut->content->subtitle = 'OpenSnap';

@@ -4,7 +4,7 @@
  * User: Nick Stephen
  * Date: 27/09/14
  * Time: 6:15 PM
- */ 
+ */
 
 function writeHeader($backUp = true, $backToDir = true)
 {
@@ -21,7 +21,7 @@ function writeHeader($backUp = true, $backToDir = true)
         echo '<h3 class="fright"><a href="./">Up</a></h3>';
     }
 
-	echo '</div>
+    echo '</div>
 	<div class="scrpt hov un-emph" id="head-hider">Hide</div>
 </div>
 <div class="scrpt hov hide un-emph" id="head-shower">Show</div>';
@@ -38,48 +38,79 @@ class MenuItem
 
     function write()
     {
-        if (!$this->hasSubItems && $this->active)
-        {
-            echo '<li class="emph">', $this->name, '</li>';
-            return;
-        }
-
-        echo '<li>';
         if ($this->hasSubItems)
         {
-            $id = 'nav-';
-            $id .= str_replace(' ', '-', $this->name);
+            if ($this->active)
+                echo '<li class="list">';
+            else
+                echo '<li class="cl-list">';
+        }
+        else
+        {
+            if ($this->active)
+            {
+                echo '<li class="emph">', $this->name, '</li>';
+                return;
+            }
+            else
+                echo '<li>';
+        }
 
-            echo '<input class="nav-check nos-check" id="', $id, '" value="', $id, '" type="checkbox" ';
+        if ($this->hasLink)
+        {
+            echo '<a href="', $this->link, '"';
 
             if ($this->active)
             {
-                echo 'checked="true"';
+                echo ' class="active"';
             }
 
-            echo '/><label for="', $id, '" class="nav-label">', $this->name, '</label>
-            <ul>';
+            echo '>';
+        }
+        echo $this->name;
+        if ($this->hasLink)
+        {
+            echo '</a>';
+        }
 
+        if ($this->active && $this->hasSubItems)
+        {
+            echo '<ul>';
             foreach ($this->subItems as $item)
             {
                 $item->write();
             }
-
             echo '</ul>';
-        }
-        else if ($this->hasLink)
-        {
-            echo '<a href="', $this->link, '">', $this->name, '</a>';
         }
 
         echo '</li>';
     }
 }
 
+// Constants for menu positions
+define('SOFT_ANDR', 0);
+
+define('SOFT_ANDR_OAA', 0);
+define('SOFT_ANDR_OAA_IND', 0);
+define('SOFT_ANDR_OAA_DOWN', 1);
+define('SOFT_ANDR_OAA_HLP', 2);
+define('SOFT_ANDR_OAA_SRC', 3);
+
+define('SOFT_ANDR_SNAP', 1);
+define('SOFT_ANDR_SNAP_IND', 0);
+define('SOFT_ANDR_SNAP_DOWN', 1);
+define('SOFT_ANDR_SNAP_HLP', 2);
+define('SOFT_ANDR_SNAP_SRC', 3);
+
+define('SOFT_XDIN', 1);
+define('SOFT_XDIN_IND', 0);
+define('SOFT_XDIN_SUPP', 1);
+define('SOFT_XDIN_SRC', 2);
+
 class SideMenu
 {
     public $relativePath = '';
-    public $android;
+    public $software;
     public $about;
     public $contact;
     public $blog;
@@ -88,69 +119,109 @@ class SideMenu
     {
         $this->relativePath = $relPath;
 
-        $this->android = new MenuItem();
-        $this->android->name = 'Android';
-        $this->android->hasSubItems = true;
+        $this->software = new MenuItem();
+        $this->software->name = 'Software';
+        $this->software->hasSubItems = true;
+        $this->software->link = '/software/';
+        $this->software->hasLink = true;
+
+        $android = new MenuItem();
+        $android->name = 'Android';
+        $android->hasSubItems = true;
+        $android->link = '/software/android/';
+        $android->hasLink = true;
 
         $subMenu = new MenuItem();
         $subMenu->name = 'Open App Android';
         $subMenu->hasSubItems = true;
+        $subMenu->link = '/software/android/oaa/';
+        $subMenu->hasLink = true;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'About';
-        $subSubMenu->link = '/android/oaa/index.php';
+        $subSubMenu->link = '/software/android/oaa/index.php';
         $subSubMenu->hasLink = true;
-        $subMenu->subItems[0] = $subSubMenu;
+        $subMenu->subItems[SOFT_ANDR_OAA_IND] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Download';
-        $subSubMenu->link = '/android/oaa/download.php';
+        $subSubMenu->link = '/software/android/oaa/download.php';
         $subSubMenu->hasLink = true;
-        $subMenu->subItems[1] = $subSubMenu;
+        $subMenu->subItems[SOFT_ANDR_OAA_DOWN] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Help';
-        $subSubMenu->link = '/android/oaa/help.php';
+        $subSubMenu->link = '/software/android/oaa/help.php';
         $subSubMenu->hasLink = true;
-        $subMenu->subItems[2] = $subSubMenu;
+        $subMenu->subItems[SOFT_ANDR_OAA_HLP] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Source';
-        $subSubMenu->link = '/android/oaa/source.php';
+        $subSubMenu->link = '/software/android/oaa/source.php';
         $subSubMenu->hasLink = true;
-        $subMenu->subItems[3] = $subSubMenu;
+        $subMenu->subItems[SOFT_ANDR_OAA_SRC] = $subSubMenu;
 
-        $this->android->subItems[0] = $subMenu;
+        $android->subItems[SOFT_ANDR_OAA] = $subMenu;
 
         $subMenu = new MenuItem();
         $subMenu->name = 'OpenSnap';
         $subMenu->hasSubItems = true;
+        $subMenu->link = '/software/android/snap/';
+        $subMenu->hasLink = true;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'About';
-        $subSubMenu->link = '/android/snap/index.php';
+        $subSubMenu->link = '/software/android/snap/index.php';
         $subSubMenu->hasLink = true;
-        $subMenu->subItems[0] = $subSubMenu;
+        $subMenu->subItems[SOFT_ANDR_SNAP_IND] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Download';
-        $subSubMenu->link = '/android/snap/download.php';
+        $subSubMenu->link = '/software/android/snap/download.php';
         $subSubMenu->hasLink = true;
-        $subMenu->subItems[1] = $subSubMenu;
+        $subMenu->subItems[SOFT_ANDR_SNAP_DOWN] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Help';
-        $subSubMenu->link = '/android/snap/help.php';
+        $subSubMenu->link = '/software/android/snap/help.php';
         $subSubMenu->hasLink = true;
-        $subMenu->subItems[2] = $subSubMenu;
+        $subMenu->subItems[SOFT_ANDR_SNAP_HLP] = $subSubMenu;
 
         $subSubMenu = new MenuItem();
         $subSubMenu->name = 'Source';
-        $subSubMenu->link = '/android/snap/source.php';
+        $subSubMenu->link = '/software/android/snap/source.php';
         $subSubMenu->hasLink = true;
-        $subMenu->subItems[3] = $subSubMenu;
+        $subMenu->subItems[SOFT_ANDR_SNAP_SRC] = $subSubMenu;
 
-        $this->android->subItems[1] = $subMenu;
+        $android->subItems[SOFT_ANDR_SNAP] = $subMenu;
+
+        $this->software->subItems[SOFT_ANDR] = $android;
+
+        $subMenu = new MenuItem();
+        $subMenu->name = 'XD-Input';
+        $subMenu->link = '/software/xdinput/index.php';
+        $subMenu->hasLink = true;
+        $subMenu->hasSubItems = true;
+
+        $subSubMenu = new MenuItem();
+        $subSubMenu->name = 'About';
+        $subSubMenu->link = '/software/xdinput/index.php';
+        $subSubMenu->hasLink = true;
+        $subMenu->subItems[SOFT_XDIN_IND] = $subSubMenu;
+
+        $subSubMenu = new MenuItem();
+        $subSubMenu->name = 'Support';
+        $subSubMenu->link = '/software/xdinput/support.php';
+        $subSubMenu->hasLink = true;
+        $subMenu->subItems[SOFT_XDIN_SUPP] = $subSubMenu;
+
+        $subSubMenu = new MenuItem();
+        $subSubMenu->name = 'Source';
+        $subSubMenu->link = '/software/xdinput/source.php';
+        $subSubMenu->hasLink = true;
+        $subMenu->subItems[SOFT_XDIN_SRC] = $subSubMenu;
+
+        $this->software->subItems[SOFT_XDIN] = $subMenu;
 
         $this->about = new MenuItem();
         $this->about->name = 'About Me';
@@ -171,7 +242,7 @@ class SideMenu
     function write()
     {
         echo '<ul>';
-        $this->android->write();
+        $this->software->write();
         $this->about->write();
         $this->contact->write();
         $this->blog->write();
@@ -181,6 +252,11 @@ class SideMenu
 
 function writeSideMenu(SideMenu $menu)
 {
+    if (!$menu->software->active && !$menu->about->active && !$menu->blog->active && !$menu->contact->active)
+    {
+        return;
+    }
+
     echo '<nav><div id="side-menu">
     <div class="hov un-emph scrpt" id="side-menu-close">Close Nav</div>
     <div id="side-menu-main">';
@@ -198,7 +274,7 @@ function writeFooter(SideMenu $menu, $title = '')
 
     if (strcmp($menu->relativePath, './') === 0)
     {
-        $name = $menu->android->active ? $menu->android->name :
+        $name = $menu->software->active ? $menu->software->name :
             ($menu->about->active ? $menu->about->name : ($menu->contact->active ? $menu->contact->name : false));
 
         if ($name !== false)
@@ -214,9 +290,9 @@ function writeFooter(SideMenu $menu, $title = '')
 
         $rel = substr($rel, 3);
 
-        if ($menu->android->active)
+        if ($menu->software->active)
         {
-            $subMenu = $menu->android;
+            $subMenu = $menu->software;
         } else if ($menu->about->active)
         {
             $subMenu = $menu->about;
@@ -247,7 +323,7 @@ function writeFooter(SideMenu $menu, $title = '')
         echo $subMenu->name;
     }
 
-finish:
+    finish:
     echo '</div>
 	<div class="contain">Nicholas Stephen - 2014</div>
 	<div class="scrpt hov un-emph" id="foot-hide">Hide</div>

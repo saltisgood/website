@@ -11,7 +11,7 @@ if (!isset($rel))
     $rel = '../';
 }
 
-include $rel . 'lib/HTMLOutput.php';
+require $rel . 'lib/HTMLOutput.php';
 
 $htmlOut = new HTML();
 
@@ -21,7 +21,7 @@ $htmlOut->thisPath = './';
 $htmlOut->content->title = 'Welcome!';
 $htmlOut->content->isMenu = true;
 
-$htmlOut->content->addButton(new Button('Android', '/android/'));
+$htmlOut->content->addButton(new Button('Software Projects', '/software/'));
 
 $htmlOut->content->addButton(new Button('About Me', 'about.php'));
 

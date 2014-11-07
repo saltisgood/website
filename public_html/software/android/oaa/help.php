@@ -8,4 +8,4 @@
 
 $rel = '../../../../';
 
-include $rel . 'content/android/snap/help.php';
+require $rel . 'content/android/oaa/help.php';

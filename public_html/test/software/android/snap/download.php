@@ -6,6 +6,6 @@
  * Time: 3:45 PM
  */
 
-$rel = '../../../../';
+$rel = '../../../../../';
 
-include $rel . 'content/android/oaa/download.php';
+require $rel . 'content/android/snap/download.php';

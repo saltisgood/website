@@ -9,3 +9,4 @@
 .kshrc
 .lastlogin
 lib/Secret.php
+lib/test/Secret.php

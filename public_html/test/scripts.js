@@ -42,29 +42,6 @@ $(document).ready(function() {
     var sideMenu = $("#side-menu");
     var sideShow = $("#side-menu-open");
 
-	sideMenu.find("input[type=checkbox]")
-        .each(function() {
-            if (this.defaultChecked) {
-                this.checked = true;
-                $(this).siblings("ul").css({
-                    display: "block",
-                    opacity: 1
-                });
-            } else {
-                this.checked = false;
-                $(this).siblings("ul").css({
-                    display: "none",
-                    opacity: 1
-                });
-            }
-        })
-        .removeClass("nos-check")
-        .change(function() {
-            (this.checked) ?
-                $(this).siblings("ul").slideDown() :
-                $(this).siblings("ul").slideUp();
-            });
-
     sideShow.animate({opacity:1});
 
     $("#side-menu-close").click(function() {

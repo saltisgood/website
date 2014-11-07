@@ -146,6 +146,10 @@ ol {
     margin-left: 15px;
 }
 
+ul {
+    list-style-position: inside;
+}
+
 ol li {
     margin-bottom: 0.8em;
 }
@@ -473,6 +477,31 @@ span#title-low-emph {
 #side-menu-main > ul {
     list-style: none;
     margin: 0;
+}
+
+#side-menu-main ul li {
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+#side-menu-main li a {
+    font-weight: normal;
+}
+
+#side-menu-main li a:hover, #side-menu-main li a:active {
+    text-decoration: underline;
+}
+
+#side-menu-main li a.active {
+    font-weight: bold;
+}
+
+#side-menu-main ul li.list {
+    background: url('/img/toggle-small.png') no-repeat scroll 0 0.3em padding-box;
+}
+
+#side-menu-main ul li.cl-list {
+    background: url('/img/toggle-small-expand.png') no-repeat scroll 0 0.3em padding-box;
 }
 
 li .nav-check + label {

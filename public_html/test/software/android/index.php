@@ -6,6 +6,6 @@
  * Time: 4:00 PM
  */
 
-$rel = '../../../';
+$rel = '../../../../';
 
-include $rel . 'content/android/index.php';
+require $rel . 'content/android/index.php';

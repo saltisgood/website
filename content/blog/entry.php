@@ -14,6 +14,28 @@ if (!isset($rel))
 require $rel . 'lib/HTMLOutput.php';
 require $rel . 'lib/DBStuff.php';
 
+function setupMenu(SideMenu $menu)
+{
+    global $blog;
+
+    $menu->blog->active = true;
+
+    $item = new MenuItem();
+    $item->active = true;
+
+    if (!$blog)
+    {
+        $item->name = 'Ain\'t a post!';
+    }
+    else
+    {
+        $item->name = $blog->title;
+    }
+
+    $menu->blog->subItems[] = $item;
+    $menu->blog->hasSubItems = true;
+}
+
 $html = new HTML();
 
 $html->relPath = '.././';
